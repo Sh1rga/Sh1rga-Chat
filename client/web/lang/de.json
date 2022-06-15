@@ -1,0 +1,69 @@
+{
+	"startroom" : "Einen Raum beginnen",
+	"start" : "Eröffnungsfeier",
+	"joinroom" : "Dem Raum beitreten",
+	"entertheroomid" : "Raum-ID eingeben",
+	"join" : "Teilnahme",
+	
+	"nowloading" : "Laden...",
+	"loadingview1" : "Dies kann einige Zeit in Anspruch nehmen.",
+	"loadingview2" : "Bitte nicht operieren und warten.",
+	"loadingview3" : "Drücken Sie nur, wenn Sie sicher sind, dass es nicht richtig funktioniert.",
+	"loadingview4" : "Wenn der Browser nicht antwortet, funktioniert er in den meisten Fällen korrekt.",
+	"loadingviewsuc" : "Laden abgeschlossen!",
+	
+	"roomid" : "Raum-ID",
+	"receivemess" : "Nachricht erhalten",
+	"entermess" : "Geben Sie Ihre Nachricht ein",
+	
+	"waitjoin1" : "Warten auf Teilnehmer ...",
+	"waitjoin2" : "Die Zimmernummer lautet",
+	
+	"cancel" : "Abbrechen",
+	"retry" : "Wiederholung",
+	"retrysuccess" : "Wiederholt.",
+	"retryfail" : "Der Versuch konnte nicht wiederholt werden.",
+	"send" : "Senden",
+	"sending" : "Ich schicke...",
+	"sent" : "Gesendet!",
+	"sentfail" : "Fehler beim Senden.",
+	"delete" : "Löschen",
+	"deletecheck" : "Sind Sie sicher, dass Sie den Raum löschen wollen? (Zum Löschen erneut drücken)",
+	"deleting" : "Löschen...",
+	"deleted" : "Gelöscht!",
+	"deletefail" : "Das Löschen ist fehlgeschlagen.",
+	"reload" : "Neu laden",
+	"reloadfail" : "Fehler beim Laden.",
+	"ok" : "OK",
+	
+	"starterror1" : "Raumerstellung fehlgeschlagen.",
+	"starterror2" : "Versuchen Sie es noch einmal.",
+	
+	"joinerror" : "Aus irgendeinem Grund nicht teilgenommen haben.",
+	"joinrnf" : "Konnte nicht teilnehmen, weil kein Raum gefunden werden konnte.",
+	"joined1" : "Hat nicht teilgenommen.",
+	"joined2" : "Es gibt bereits Teilnehmer.",
+	
+	"roomnotfound1" : "Zimmer nicht gefunden.",
+	"roomnotfound2" : "Möglicherweise wurden sie gelöscht oder die Zeit ist abgelaufen.",
+	
+	"serverdown1" : "Der Server ist derzeit außer Betrieb.",
+	"serverdown2" : "Überprüfen Sie den Status auf Twitter und anderswo.",
+	
+	"roomflagged1" : "Der Raum wurde markiert.",
+	"roomflagged2" : "Die Konversation kann nicht fortgesetzt werden.",
+	
+	"oldver1" : "Die Version ist veraltet.",
+	"oldver2" : "Laden Sie die Seite neu.",
+	
+	"notconnect_re" : "Die Verbindung wiederherstellen...",
+	"notconnect_1" : "Die Kommunikation mit dem Server wurde unterbrochen.",
+	"notconnect10_1" : "Sie können seit einiger Zeit keine Verbindung mehr zum Server herstellen.",
+	"notconnect30_1" : "Verbindung zum Server fehlgeschlagen.",
+	"notconnect30_2" : "Bitte versuchen Sie es nach einer Weile erneut.",
+	
+	"setting" : "Einstellung",
+	"tos" : "Durch die Nutzung von Sh1rga erklären Sie sich mit den Nutzungsbedingungen von Sh1rga einverstanden.",
+	
+	"" : ""
+}

@@ -1,0 +1,69 @@
+{
+	"startroom" : "开始一个房间",
+	"start" : "开始",
+	"joinroom" : "加入房间",
+	"entertheroomid" : "输入房间编号",
+	"join" : "参与",
+	
+	"nowloading" : "正在加载...",
+	"loadingview1" : "这可能需要一些时间。",
+	"loadingview2" : "请不要操作和等待。",
+	"loadingview3" : "只有当你确定它不能正常工作时才按。",
+	"loadingview4" : "如果浏览器没有反应，在大多数情况下，它的工作是正确的。",
+	"loadingviewsuc" : "加载完毕!",
+	
+	"roomid" : "房间编号",
+	"receivemess" : "收到的信息",
+	"entermess" : "输入你的信息",
+	
+	"waitjoin1" : "等待参与者...",
+	"waitjoin2" : "房间编号是",
+	
+	"cancel" : "取消",
+	"retry" : "重新执行",
+	"retrysuccess" : "重新运行。",
+	"retryfail" : "重新运行失败。",
+	"send" : "传动",
+	"sending" : "传递...",
+	"sent" : "已发送!",
+	"sentfail" : "传输失败。",
+	"delete" : "删减",
+	"deletecheck" : "你确定你要删除这个房间吗？(再按一次就可以删除)",
+	"deleting" : "删除...",
+	"deleted" : "删掉了!",
+	"deletefail" : "删除失败。",
+	"reload" : "重载",
+	"reloadfail" : "加载失败。",
+	"ok" : "认可",
+	
+	"starterror1" : "房间创建失败。",
+	"starterror2" : "再试一次。",
+	
+	"joinerror" : "因任何原因未能参加。",
+	"joinrnf" : "因找不到房间而未能出席。",
+	"joined1" : "未能参加。",
+	"joined2" : "已经有参与者了。",
+	
+	"roomnotfound1" : "没有找到房间。",
+	"roomnotfound2" : "可能已经被删除，或者时间已经过期。",
+	
+	"serverdown1" : "该服务器目前已停止服务。",
+	"serverdown2" : "在Twitter和其他地方查看状态。",
+	
+	"roomflagged1" : "房间已被标记。",
+	"roomflagged2" : "对话无法继续。",
+	
+	"oldver1" : "版本已过期。",
+	"oldver2" : "重新加载页面。",
+	
+	"notconnect_re" : "重新连接...",
+	"notconnect_1" : "与服务器的通信已被切断。",
+	"notconnect10_1" : "你已经有一段时间无法连接到服务器了。",
+	"notconnect30_1" : "与服务器的连接失败。",
+	"notconnect30_2" : "请稍后再试。",
+	
+	"setting" : "设置",
+	"tos" : "通过使用Sh1rga，您同意Sh1rga的服务条款。",
+	
+	"" : ""
+}

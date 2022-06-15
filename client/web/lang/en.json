@@ -1,0 +1,69 @@
+{
+	"startroom" : "Start room",
+	"start" : "Start",
+	"joinroom" : "Join room",
+	"entertheroomid" : "Enter the room ID",
+	"join" : "Join",
+	
+	"nowloading" : "Now Loading...",
+	"loadingview1" : "This operation may take some time.",
+	"loadingview2" : "Please wait without performing any unnecessary operations.",
+	"loadingview3" : "Press only if you are sure you have completely failed.",
+	"loadingview4" : "If the browser is not responding, there is a high probability that it is working properly.",
+	"loadingviewsuc" : "Loading complete!",
+	
+	"roomid" : "Room ID",
+	"receivemess" : "Received message",
+	"entermess" : "Enter your message",
+	
+	"waitjoin1" : "Waiting for participants...",
+	"waitjoin2" : "This room ID is",
+	
+	"cancel" : "Cancel",
+	"retry" : "Retry",
+	"retrysuccess" : "Retried.",
+	"retryfail" : "Could not retry.",
+	"send" : "Send",
+	"sending" : "Sending...",
+	"sent" : "Sent!",
+	"sentfail" : "Sending failure.",
+	"delete" : "Delete",
+	"deletecheck" : "Are you sure you want to delete the room? (Press again to delete)",
+	"deleting" : "Deleting...",
+	"deleted" : "Deleted!",
+	"deletefail" : "Failed to delete.",
+	"reload" : "Reload",
+	"reloadfail" : "Loading failure.",
+	"ok" : "OK",
+	
+	"starterror1" : "Room creation failed.",
+	"starterror2" : "Please try again.",
+	
+	"joinerror" : "Failed to join for some reason.",
+	"joinrnf" : "Failed to join due to room not found.",
+	"joined1" : "Failed to join.",
+	"joined2" : "Someone has already joined.",
+	
+	"roomnotfound1" : "Room not found.",
+	"roomnotfound2" : "It may have been deleted or expired.",
+	
+	"serverdown1" : "The server is currently out of operation.",
+	"serverdown2" : "Please check Twitter and other sites for current status.",
+	
+	"roomflagged1" : "Room has been flagged.",
+	"roomflagged2" : "Conversation cannot continue.",
+	
+	"oldver1" : "Version is out of date.",
+	"oldver2" : "Please refresh the page.",
+	
+	"notconnect_re" : "Reconnecting...",
+	"notconnect_1" : "Communication with the server has been disconnected.",
+	"notconnect10_1" : "You have not been able to connect to the server for some time.",
+	"notconnect30_1" : "Connection to server failed.",
+	"notconnect30_2" : "Please try again after a while.",
+	
+	"setting" : "Setting",
+	"tos" : "By using Sh1rga, you agree to Sh1rga Terms of Service.",
+	
+	"" : ""
+}

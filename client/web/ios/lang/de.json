@@ -1,0 +1,22 @@
+{
+	"back" : "Zurück",
+	
+	"changeicon" : "Symbol ändern",
+	
+	"notification" : "Benachrichtigung",
+	"notification_1" : "Erhalten Sie eine Benachrichtigung, wenn neue Nachrichten eingegangen sind.",
+	
+	"disableautosleep" : "Schlafautomatik deaktivieren",
+	"disableautosleep_1" : "Deaktivieren Sie den automatischen Ruhezustand während eines Gesprächs.",
+	
+	"background" : "Hintergrund aktivieren",
+	"background_1" : "Stille wiedergeben, damit Benachrichtigungen auch über längere Zeiträume im Hintergrund empfangen werden können.",
+	"background_2" : "Dies kann jedoch mehr Akkuleistung verbrauchen.",
+	
+	"muteword" : "Wort stummschalten",
+	"muteword_1" : "Schaltet die angegebenen Wörter stumm.",
+	
+	"report" : "Bericht an den Entwickler",
+	
+	"" : ""
+}

@@ -1,0 +1,22 @@
+{
+	"back" : "Back",
+	
+	"changeicon" : "Change Icon",
+	
+	"notification" : "Notification",
+	"notification_1" : "Receive notification when new messages are received.",
+	
+	"disableautosleep" : "Disable auto sleep",
+	"disableautosleep_1" : "Disable auto sleep during conversation.",
+	
+	"background" : "Enable Background",
+	"background_1" : "Play silence so that notifications can be received even in the background for long periods of time.",
+	"background_2" : "However, it may consume more battery power.",
+	
+	"muteword" : "Mute Word",
+	"muteword_1" : "Mutes the specified words.",
+	
+	"report" : "Report to developer",
+	
+	"" : ""
+}

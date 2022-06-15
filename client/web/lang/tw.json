@@ -1,0 +1,69 @@
+{
+	"startroom" : "開始房間",
+	"start" : "開始",
+	"joinroom" : "加入房間",
+	"entertheroomid" : "輸入房間 ID",
+	"join" : "加入",
+
+	"nowloading" : "正在加載...",
+	"loadingview1" : "此操作可能需要一些時間。",
+	"loadingview2" : "請稍候，不要執行任何不必要的操作。",
+	"loadingview3" : "只有在您確定完全失敗時才按。",
+	"loadingview4" : "如果瀏覽器沒有響應，很有可能它工作正常。",
+	"loadingviewsuc" : "加載完成！",
+
+	"roomid" : "房間 ID",
+	"receivemess" : "收到的消息",
+	"entermess" : "輸入你的信息",
+
+	"waitjoin1" : "等待參與者...",
+	"waitjoin2" : "這個房間號是",
+
+	"cancel" : "取消",
+	"retry" : "重試",
+	"retrysuccess" : "重試。",
+	"retryfail" : "無法重試。",
+	"send" : "發送",
+	"sending" : "發送...",
+	"sent" : "已發送！",
+	"sentfail" : "發送失敗。",
+	"delete" : "刪除",
+	"deletecheck" : "你確定要刪除房間嗎？(再按一次刪除)",
+	"deleting" : "正在刪除...",
+	"deleted" : "已刪除！",
+	"deletefail" : "刪除失敗。",
+	"reload" : "重新加載",
+	"reloadfail" : "加載失敗。",
+	"ok" : "OK",
+
+	"starterror1" : "房間創建失敗。",
+	"starterror2" : "請再試一次。",
+
+	"joinerror" : "由於某種原因無法加入。",
+	"joinrnf" : "找不到房間，加入失敗。",
+	"joined1" : "加入失敗。",
+	"joined2" : "有人已經加入。",
+
+	"roomnotfound1" : "沒有找到房間。",
+	"roomnotfound2" : "它可能已被刪除或過期。",
+
+	"serverdown1" : "服務器當前無法運行。",
+	"serverdown2" : "請查看 Twitter 和其他網站的當前狀態。",
+	
+	"roomflagged1" : "房間已被標記。",
+	"roomflagged2" : "對話無法繼續。",
+
+	"oldver1" : "版本過時了。",
+	"oldver2" : "請刷新頁面。",
+
+	"notconnect_re" : "正在重新連接...",
+	"notconnect_1" : "與服務器的通訊已斷開。",
+	"notconnect10_1" : "您已經有一段時間無法連接到服務器了。",
+	"notconnect30_1" : "連接服務器失敗。",
+	"notconnect30_2" : "請稍後再試。",
+
+	"setting" : "設置",
+	"tos" : "使用 Sh1rga 即表示您同意 Sh1rga 服務條款。",
+
+	"" : ""
+}

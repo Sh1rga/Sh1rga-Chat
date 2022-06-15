@@ -1,0 +1,22 @@
+{
+	"back" : "Voltar",
+	
+	"changeicon" : "Mudar Ícone",
+	
+	"notification" : "Notificação",
+	"notification_1" : "Receber notificação quando novas mensagens são recebidas.",
+	
+	"disableautosleep" : "Desactivar o sono automático",
+	"disableautosleep_1" : "Desactivar o sono automático durante a conversa.",
+	
+	"background" : "Habilitar fundo",
+	"background_1" : "Tocar o silêncio para que as notificações possam ser recebidas mesmo em segundo plano durante longos períodos de tempo.",
+	"background_2" : "No entanto, pode consumir mais energia da bateria.",
+	
+	"muteword" : "Palavra mudo",
+	"muteword_1" : "Muda as palavras especificadas.",
+	
+	"report" : "Relatório para o desenvolvedor",
+	
+	"" : ""
+}

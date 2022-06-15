@@ -1,0 +1,18 @@
+{
+  "applinks": {
+      "details": [
+           {
+             "appIDs": [ "PN7VT53C27.com.tsg0o0.sh1rga" ],
+             "components": [
+               {
+                  "#": "no_apple_unilinks",
+                  "exclude": true
+               },
+               {
+                  "/": "/*",
+               }
+             ]
+           }
+       ]
+   }
+}

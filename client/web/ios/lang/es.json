@@ -1,0 +1,22 @@
+{
+	"back" : "Volver",
+	
+	"changeicon" : "Icono de cambio",
+	
+	"notification" : "Notificación",
+	"notification_1" : "Recibir una notificación cuando se reciben nuevos mensajes.",
+	
+	"disableautosleep" : "Desactivar la suspensión automática",
+	"disableautosleep_1" : "Desactivar la suspensión automática durante la conversación.",
+	
+	"background" : "Habilitar fondo",
+	"background_1" : "Reproducir el silencio para poder recibir notificaciones incluso en segundo plano durante largos periodos de tiempo.",
+	"background_2" : "Sin embargo, puede consumir más batería.",
+	
+	"muteword" : "Silenciar palabra",
+	"muteword_1" : "Silencia las palabras especificadas.",
+	
+	"report" : "Informe al promotor",
+		
+	"" : ""
+}

@@ -1,0 +1,246 @@
+*{
+font-family:"Helvetica Neue",Arial,"Hiragino Kaku Gothic ProN","Hiragino Sans",Meiryo,sans-serif;
+-webkit-user-select:none;
+-webkit-touch-callout:none;
+-webkit-user-drag:none;
+user-select:none;
+cursor:default;
+}
+body{
+overflow-wrap:break-word;
+background-color:#111;
+color:#fff;
+width:950px;
+margin:0px auto;
+position:relative;
+overflow: hidden;
+}
+a{
+text-decoration:none;
+font-size:16px;
+display:inline-block;
+height:32px;
+color:#00b0ff;
+background-color:#023;
+padding:0 10px;
+margin:5px 0;
+border-radius:10px;
+text-align:center;
+font-weight:500;
+line-height:32px;
+border:solid;
+border-color:#345;
+border-width:2px;
+cursor:pointer;
+}
+p{padding:5px 0px 5px}
+input{
+font-size:16px;
+padding:0 10px;
+margin:5px;
+height:32px;
+color:#fff;
+background-color:#023;
+border-radius:10px;
+-webkit-user-select:auto;
+-webkit-touch-callout:auto;
+-webkit-user-drag:auto;
+user-select:auto;
+border:solid;
+border-color:#345;
+border-width:2px;
+cursor:text;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+input[type="number"] {
+-moz-appearance:textfield;
+}
+textarea{
+border:3px solid;
+font-size:16px;
+padding:20px;
+margin:5px;
+width:calc(95% - 60px);
+height:calc((100vh - 118px) / 4);
+color:#fff;
+resize:none;
+border-color:#111;
+border-width:3px;
+-webkit-user-select:auto;
+-webkit-touch-callout:auto;
+-webkit-user-drag:auto;
+user-select:auto;
+cursor:text;
+}
+button{
+font-size:16px;
+height:36px;
+color:#00b0ff;
+background-color:#023;
+padding:0 10px;
+margin:5px 0;
+border-radius:10px;
+text-align:center;
+font-weight:500;
+border:solid;
+border-color:#345;
+border-width:2px;
+line-height:32px;
+cursor:pointer;
+}
+img{
+pointer-events:none;
+-webkit-touch-callout:none;
+-webkit-user-select:none;
+-webkit-user-drag:none;
+user-select:none;
+}
+:root{color-scheme:dark}
+header{
+width:950px;
+height:100px;
+display:table;
+position:fixed;
+top:-5px;
+}
+header .ls{
+display:table-cell;
+min-width:40px;
+}
+header img{
+display:inline-block;
+width:auto;
+height:90px;
+margin:2px 16px 0;
+}
+.msg{
+position:relative;
+right:3px;
+font-size:80%;
+width:calc(100% - 24px);
+display:inline-block;
+line-height:18px;
+text-align:center;
+height:36px;
+overflow-x:scroll;
+padding:10px;
+border-radius:15px;
+background-color:rgba(68,17,34,0.9);
+border:solid;
+border-color:#623;
+margin-bottom:13px;
+border-width:3px;
+}
+.goodmsg{
+position:relative;
+right:3px;
+font-size:80%;
+width:calc(100% - 24px);
+display:inline-block;
+line-height:36px;
+text-align:center;
+height:36px;
+overflow-x:scroll;
+padding:10px;
+border-radius:15px;
+background-color:rgba(17,68,34,0.9);
+border:solid;
+border-color:#263;
+margin-bottom:13px;
+border-width:3px;
+}
+.box{
+overflow-x:scroll;
+padding:10px 10px 0;
+width:924px;
+height:calc(100% - 110px);
+border-radius:15px;
+background-color:#10181f;
+border:solid;
+border-color:#134;
+margin-bottom:5px;
+border-width:3px;
+position:fixed;
+top:90px;
+}
+select{
+background-color:#023;
+font-size:100%;
+padding:10px;
+border-radius:10px;
+width:150px;
+line-height:32px;
+color:#fff;
+border:solid;
+border-color:#345;
+border-width:2px;
+font-size:120%;
+}
+.loadCurtain{
+position:fixed;
+top:0;
+left:0;
+right:0;
+bottom:0;
+background-color:#111;
+}
+.loadCurtain img{;
+position:fixed;
+top:calc(50% - 25vh);
+left:calc(50% - 25vh);;
+height:50vh;
+}
+.loadCurtain center{
+position:relative;
+top:10%;
+}
+@media only screen and (max-height:605px){
+textarea{height:113px}
+}
+@media only screen and (max-width:1000px){
+body{width:95%}
+header{width:95%}
+.box{width:calc(95% - 26px)}
+.text{margin:50px 0}
+}
+@media only screen and (max-width:599px){
+body{width:95%}
+header{width:95%;top:-20px}
+.box{width:calc(95% - 26px);top:80px}
+header .ls{
+display:block;
+margin:auto;
+text-align:center;
+}
+.msg{
+position:fixed;
+top:7px;
+left:2.5%;
+width:calc(95% - 26px);
+}
+.goodmsg{
+position:fixed;
+top:7px;
+left:2.5%;
+width:calc(95% - 26px);
+}
+}
+@media only screen and (max-width:150px){
+body{
+width:144px;
+margin:0 auto;
+padding:3px;
+}
+}
+@media print{*{opacity:0%}}
+.setbox{
+padding:10px;
+width:90%;
+border-radius:15px;
+border:solid 5px #111;
+background-color:#10181f;
+}

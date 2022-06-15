@@ -1,0 +1,22 @@
+{
+	"back" : "後退",
+	
+	"changeicon" : "更改圖標",
+	
+	"notification" : "通知",
+	"notification_1" : "收到新消息時收到通知。",
+	
+	"disableautosleep" : "禁用自動睡眠",
+	"disableautosleep_1" : "在對話期間禁用自動睡眠。",
+	
+	"background" : "啟用背景",
+	"background_1" : "播放靜音，這樣即使在後台很長一段時間也能收到通知。",
+	"background_2" : "但是，它可能會消耗更多的電池電量。",
+	
+	"muteword" : "靜音詞",
+	"muteword_1" : "靜音指定的單詞。",
+	
+	"report" : "向開發商報告",
+	
+	"" : ""
+}

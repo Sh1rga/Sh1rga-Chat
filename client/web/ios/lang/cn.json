@@ -1,0 +1,22 @@
+{
+	"back" : "返回",
+	
+	"changeicon" : "改变图标",
+	
+	"notification" : "通知",
+	"notification_1" : "当收到新邮件时接收通知。",
+	
+	"disableautosleep" : "禁用自动睡眠",
+	"disableautosleep_1" : "在对话期间禁止自动睡眠。",
+	
+	"background" : "启用背景",
+	"background_1" : "播放静音，这样即使长时间在后台也能收到通知。",
+	"background_2" : "然而，它可能会消耗更多的电池电量。",
+	
+	"muteword" : "静音词",
+	"muteword_1" : "使指定的单词静音。",
+	
+	"report" : "向开发商报告",
+	
+	"" : ""
+}

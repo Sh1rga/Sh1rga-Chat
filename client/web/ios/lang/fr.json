@@ -1,0 +1,22 @@
+{
+	"back" : "Retour",
+	
+	"changeicon" : "Changer l'icône",
+	
+	"notification" : "Notification",
+	"notification_1" : "Recevez une notification lorsque vous recevez de nouveaux messages.",
+	
+	"disableautosleep" : "Désactiver la veille automatique",
+	"disableautosleep_1" : "Désactivez la mise en veille automatique pendant la conversation.",
+	
+	"background" : "Activer le fond",
+	"background_1" : "Joue le silence afin que les notifications puissent être reçues même en arrière-plan pendant de longues périodes.",
+	"background_2" : "Cependant, cela peut consommer davantage de batterie.",
+	
+	"muteword" : "Mot muet",
+	"muteword_1" : "Met en sourdine les mots spécifiés.",
+	
+	"report" : "Rapport au développeur",
+	
+	"" : ""
+}
