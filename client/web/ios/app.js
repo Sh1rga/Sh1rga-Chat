@@ -1,4 +1,4 @@
-var version = "0.2.0";
+var version = "0.2.1";
 var socketTime = 0;
 var socketConnect = false;
 var server_encrypt = "";
@@ -571,8 +571,15 @@ function Button() {
 	}
 }
 
+document.body.addEventListener('keydown', event => {
+    if (yjoin == true && ((event.key === 'Enter' || event.key === 'Return') && (event.ctrlKey || event.metaKey))) {
+		sendSend();
+    }
+});
+
 window.onbeforeunload = function(e) {if (join == true) {return "";}}
-window.document.onkeydown = function(evt){if (evt.which == 123){ evt.which = null;return false;}}
+window.document.onkeydown = function(evt){
+if (evt.which == 123 && ((event.ctrlKey || event.metaKey) && 76)){ evt.which = null;return false;}}
 
 var muteWord = "";
 var enableMuteWord = false;

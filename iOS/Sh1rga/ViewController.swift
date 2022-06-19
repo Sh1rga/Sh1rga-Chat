@@ -37,11 +37,15 @@ class ViewController: UIViewController , WKNavigationDelegate , WKUIDelegate , U
         autoSleepDisable = UserDefaults.standard.bool(forKey: "chat.autoSleepDisable")
         #if ALTRELEASE
         enableBackground = UserDefaults.standard.bool(forKey: "chat.enableBackground")
-        #else
+        #elseif RELEASEBYPASS
         enableMuteWord = UserDefaults.standard.bool(forKey: "chat.enableMuteWord")
         muteWord = UserDefaults.standard.string(forKey: "chat.muteWord")
         #endif
-        loadSh1rga()
+        if let html = Bundle.main.path(forResource: "app/loading", ofType: "html") {
+              let url = URL(fileURLWithPath: html)
+              let request = URLRequest(url: url)
+              webView.load(request)
+        }
     }
     
     func loadSh1rga() {
@@ -79,18 +83,21 @@ class ViewController: UIViewController , WKNavigationDelegate , WKUIDelegate , U
         if Locale.current.languageCode == "ko" {
             appDelegate.lang = "ko"
         }
-        if (internetConnection == true) {
-            if let html = Bundle.main.path(forResource: "app/index", ofType: "html") {
-                  let url = URL(fileURLWithPath: html)
-                  let request = URLRequest(url: url)
-                  webView.load(request)
-            }
-            
-    }else{
-            if let html = Bundle.main.path(forResource: "app/error/index", ofType: "html") {
-                  let url = URL(fileURLWithPath: html)
-                  let request = URLRequest(url: url)
-                  webView.load(request)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [self] in
+            if (internetConnection == true) {
+                if let html = Bundle.main.path(forResource: "app/index", ofType: "html") {
+                    let url = URL(fileURLWithPath: html)
+                    let request = URLRequest(url: url)
+                    webView.load(request)
+                }
+                
+            }else{
+                if let html = Bundle.main.path(forResource: "app/error", ofType: "html") {
+                    let url = URL(fileURLWithPath: html)
+                    let request = URLRequest(url: url)
+                    webView.load(request)
+                    firstTime = false
+                }
             }
         }
     }
@@ -107,68 +114,76 @@ class ViewController: UIViewController , WKNavigationDelegate , WKUIDelegate , U
         return (isReachable && !needsConnection)
     }
 
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        if firstTime == true {
+            loadSh1rga()
+        }
+        }
 
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         
         if firstTime == true && internetConnection == true {
-        #if ALTRELEASE
-            struct Record:Codable {
-                let ver: String
-            }
-            let url = URL(string: "https://tsg0o0.com/resource/app/sh1rga/altstore.json")!
-            let request = URLRequest(url: url)
-            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-                guard let data = data else { return }
-                do {
-                    let jsonData = try JSONDecoder().decode(Record.self, from: data)
-                    DispatchQueue.main.async {
-                        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
-                        
-                        if jsonData.ver != version {
-                            self.verOldAlert()
+                #if ALTRELEASE
+                struct Record:Codable {
+                    let ver: String
+                }
+                let url = URL(string: "https://sh1r.ga/iOSAppSetting.json")!
+                let request = URLRequest(url: url)
+                let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                    guard let data = data else { return }
+                    do {
+                        let jsonData = try JSONDecoder().decode(Record.self, from: data)
+                        DispatchQueue.main.async {
+                            let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+                            
+                            if jsonData.ver != version {
+                                self.verOldAlert()
+                            }
                         }
+                    } catch _ {
                     }
-                } catch _ {
                 }
-            }
-            task.resume()
-        #else
-            AppVersionCompare.toAppStoreVersion() { (type) in
-                switch type {
-                case .latest: break
-                case .old:
-                    self.verOldAlert()
-                case .error: break
-                }
-            }
-            struct Record:Codable {
-                let allowMuteWord: Bool
-            }
-            let url = URL(string: "https://chat.sh1r.ga/ios/appSetting.json")!
-            let request = URLRequest(url: url)
-            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-                guard let data = data else { return }
-                do {
-                    let jsonData = try JSONDecoder().decode(Record.self, from: data)
-                    DispatchQueue.main.async {
-                        self.allowMuteWord = jsonData.allowMuteWord
+                task.resume()
+                #else
+                AppVersionCompare.toAppStoreVersion() { (type) in
+                    switch type {
+                    case .latest: break
+                    case .old:
+                        self.verOldAlert()
+                    case .error: break
                     }
-                } catch _ {
                 }
-            }
-            task.resume()
-        
-        #endif
-        self.firstTime = false
-    }
+                struct Record:Codable {
+                    let allowMuteWord: Bool
+                }
+                let url = URL(string: "https://sh1r.ga/iOSAppSetting.json")!
+                let request = URLRequest(url: url)
+                let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                    guard let data = data else { return }
+                    do {
+                        let jsonData = try JSONDecoder().decode(Record.self, from: data)
+                        DispatchQueue.main.async {
+                            self.allowMuteWord = jsonData.allowMuteWord
+                            if jsonData.allowMuteWord == false {
+                                self.enableMuteWord = false
+                            }
+                        }
+                    } catch _ {
+                    }
+                }
+                task.resume()
+                
+                #endif
+            firstTime = false
+        }
         
         if "sh1rga://" == navigationAction.request.url!.absoluteString.prefix(9) {
                 decisionHandler(.cancel)
             
             if navigationAction.request.url!.absoluteString == "sh1rga://appSettingLoad" {
                 
-                #if !ALTRELEASE
-                if (enableMuteWord == true) {
+                #if RELEASEBYPASS
+                if (enableMuteWord == true && enableMuteWord == true) {
                     webView.evaluateJavaScript("muteWord = \"" + muteWord! + "\";")
                     webView.evaluateJavaScript("enableMuteWord = true;")
                 }else{
@@ -178,6 +193,7 @@ class ViewController: UIViewController , WKNavigationDelegate , WKUIDelegate , U
                 
             }else if navigationAction.request.url!.absoluteString == "sh1rga://reload" {
                 
+                firstTime = true
                 loadSh1rga()
                 
             }else if navigationAction.request.url!.absoluteString == "sh1rga://notifi/getNewMessage" {
@@ -296,7 +312,7 @@ class ViewController: UIViewController , WKNavigationDelegate , WKUIDelegate , U
                 }else{
                     webView.evaluateJavaScript("document.getElementById('setting-enableBackground').innerHTML = '<a href=\"sh1rga://setting/enableBackground/true\" style=\"color:#ddd\">OFF</a>'")
                 }
-                #else
+                #elseif RELEASEBYPASS
                 if allowMuteWord == true {
                     webView.evaluateJavaScript("document.getElementById('setting-altchange').innerHTML = '<div class=\"setbox\"><h3 style=\"margin:5px\">' + settingLangJson.muteword + '</h3><div style=\"padding:5px;color:#ccc\">' + settingLangJson.muteword_1 + '<br></div><div style=\"display:inline\" id=\"setting-enableMuteWord\"><a>&nbsp; &nbsp; &nbsp;</a></div>&nbsp; &nbsp;<a href=\"sh1rga://setting/muteWord\">' + langjson.setting + '</a></div><br>'")
                     if enableMuteWord == true {
@@ -376,7 +392,7 @@ class ViewController: UIViewController , WKNavigationDelegate , WKUIDelegate , U
                 UserDefaults.standard.set(false, forKey: "chat.enableBackground")
                 webView.evaluateJavaScript("document.getElementById('setting-enableBackground').innerHTML = '<a href=\"sh1rga://setting/enableBackground/true\" style=\"color:#ddd\">OFF</a>'")
             }
-            #else
+            #elseif RELEASEBYPASS
             if allowMuteWord == true {
                 if navigationAction.request.url!.absoluteString == "sh1rga://setting/enableMuteWord/true" {
                     enableMuteWord = true
@@ -458,46 +474,144 @@ override var keyCommands: [UIKeyCommand]? {
 }
     
     func verOldAlert() {
-        var VerAlertText = "Version is out of date."
+        var VerAlertTitle = "Version is out of date"
+        var VerAlertOpen = "Open"
+        var VerAlertNo = "No"
+        if appDelegate.lang == "ar" {
+            VerAlertTitle = "الإصدار قديم"
+            VerAlertOpen = "فتح"
+            VerAlertNo = "لا"
+        }else if appDelegate.lang == "cn" {
+            VerAlertTitle = "版本已过期"
+            VerAlertOpen = "打开"
+            VerAlertNo = "不"
+        }else if appDelegate.lang == "tw" {
+            VerAlertTitle = "版本已過期"
+            VerAlertOpen = "打開"
+            VerAlertNo = "不"
+        }else if appDelegate.lang == "de" {
+            VerAlertTitle = "Die Version ist veraltet"
+            VerAlertOpen = "Öffnen Sie"
+            VerAlertNo = "Nein"
+        }else if appDelegate.lang == "es" {
+            VerAlertTitle = "La versión está desfasada"
+            VerAlertOpen = "Abrir"
+            VerAlertNo = "No"
+        }else if appDelegate.lang == "fr" {
+            VerAlertTitle = "La version n'est pas à jour"
+            VerAlertOpen = "Ouvrir"
+            VerAlertNo = "Non"
+        }else if appDelegate.lang == "ja" {
+            VerAlertTitle = "バージョンが古くなっています"
+            VerAlertOpen = "開く"
+            VerAlertNo = "いいえ"
+        }else if appDelegate.lang == "pt" {
+            VerAlertTitle = "A versão está desactualizada"
+            VerAlertOpen = "Aberto"
+            VerAlertNo = "Não"
+        }else if appDelegate.lang == "ru" {
+            VerAlertTitle = "Версия устарела"
+            VerAlertOpen = "Открыть"
+            VerAlertNo = "Нет"
+        }else if appDelegate.lang == "ko" {
+            VerAlertTitle = "버전이 오래되었습니다"
+            VerAlertOpen = "열려 있는"
+            VerAlertNo = "아니"
+        }
         #if ALTRELEASE
-        let alert = UIAlertController(title: VerAlertText, message: "Do you want to open the AltStore? Or do you want to update directly?", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "Open", style: .default) { (action) in
+        var VerAlertMsg = "Do you want to open the AltStore?\nOr do you want to update directly?"
+        var VerAlertDirectUpdate = "Direct Update"
+        if appDelegate.lang == "ar" {
+            VerAlertMsg = "هل تريد فتح AltStore؟\nأم تريد التحديث مباشرة؟"
+            VerAlertDirectUpdate = "تحديث مباشر"
+        }else if appDelegate.lang == "cn" {
+            VerAlertMsg = "你想打开AltStore吗？\n还是想直接更新？"
+            VerAlertDirectUpdate = "直接更新"
+        }else if appDelegate.lang == "tw" {
+            VerAlertMsg = "您要打開AltStore嗎？\n還是要直接更新？"
+            VerAlertDirectUpdate = "直接更新"
+        }else if appDelegate.lang == "de" {
+            VerAlertMsg = "Möchten Sie den AltStore öffnen?\nOder möchten Sie direkt aktualisieren?"
+            VerAlertDirectUpdate = "Direkt aktualisieren"
+        }else if appDelegate.lang == "es" {
+            VerAlertMsg = "¿Desea abrir la AltStore?\n¿O quiere actualizar directamente?"
+            VerAlertDirectUpdate = "Actualización directa"
+        }else if appDelegate.lang == "fr" {
+            VerAlertMsg = "Voulez-vous ouvrir le magasin AltStore ?\nOu voulez-vous faire une mise à jour directe ?"
+            VerAlertDirectUpdate = "Mise à jour directe"
+        }else if appDelegate.lang == "ja" {
+            VerAlertMsg = "AltStoreを開きますか？\nそれとも直接アップデートしますか？"
+            VerAlertDirectUpdate = "直接アップデート"
+        }else if appDelegate.lang == "pt" {
+            VerAlertMsg = "Quer abrir a AltStore?\nOu quer actualizar directamente?"
+            VerAlertDirectUpdate = "Actualização directa"
+        }else if appDelegate.lang == "ru" {
+            VerAlertMsg = "Хотите ли вы открыть AltStore?\nИли вы хотите обновить напрямую?"
+            VerAlertDirectUpdate = "Прямое обновление"
+        }else if appDelegate.lang == "ko" {
+            VerAlertMsg = "AltStore를 여시겠습니까?\n아니면 직접 업데이트하시겠습니까?"
+            VerAlertDirectUpdate = "직접 업데이트"
+        }
+        let alert = UIAlertController(title: VerAlertTitle, message: VerAlertMsg, preferredStyle: .alert)
+        let ok = UIAlertAction(title: VerAlertOpen, style: .default) { (action) in
             let urlString = "altstore://"
             let url = NSURL(string: urlString)
             UIApplication.shared.open(url! as URL)
             self.dismiss(animated: true, completion: nil)
         }
-        let update = UIAlertAction(title: "Direct Update", style: .default) { (action) in
+        let update = UIAlertAction(title: VerAlertDirectUpdate, style: .default) { (action) in
             let urlString = "altstore://install?url=https://tsg0o0.com/resource/app/sh1rga/ios/Sh1rga.ipa"
             let url = NSURL(string: urlString)
             UIApplication.shared.open(url! as URL)
             self.dismiss(animated: true, completion: nil)
         }
-        let cancel = UIAlertAction(title: "No", style: .cancel) { (acrion) in
+        let cancel = UIAlertAction(title: VerAlertNo, style: .cancel) { (acrion) in
             self.dismiss(animated: true, completion: nil)
         }
-        alert.addAction(cancel)
-        alert.addAction(update)
         alert.addAction(ok)
+        alert.addAction(update)
+        alert.addAction(cancel)
         self.present(alert, animated: true, completion: nil)
         
         #else
         
+        var VerAlertMsg = "Do you want to open the App Store?"
+        if appDelegate.lang == "ar" {
+            VerAlertMsg = "هل تريد فتح متجر التطبيقات؟"
+        }else if appDelegate.lang == "cn" {
+            VerAlertMsg = "你想打开App Store吗？"
+        }else if appDelegate.lang == "tw" {
+            VerAlertMsg = "您要打開App Store嗎？"
+        }else if appDelegate.lang == "de" {
+            VerAlertMsg = "Möchten Sie den App Store öffnen?"
+        }else if appDelegate.lang == "es" {
+            VerAlertMsg = "¿Desea abrir la App Store?"
+        }else if appDelegate.lang == "fr" {
+            VerAlertMsg = "Voulez-vous ouvrir l'App Store ?"
+        }else if appDelegate.lang == "ja" {
+            VerAlertMsg = "App Storeを開きますか？"
+        }else if appDelegate.lang == "pt" {
+            VerAlertMsg = "Quer abrir a App Store?"
+        }else if appDelegate.lang == "ru" {
+            VerAlertMsg = "Вы хотите открыть App Store?"
+        }else if appDelegate.lang == "ko" {
+            VerAlertMsg = "앱 스토어를 열시겠습니까?"
+        }
         let queue = DispatchQueue.main
         queue.sync{
-                let alert = UIAlertController(title: VerAlertText, message: "Do you want to open the App Store?", preferredStyle: .alert)
-                let ok = UIAlertAction(title: "Open", style: .default) { (action) in
-                    let urlString = "itms-apps://itunes.apple.com/app/id1622376481"
-                    let url = NSURL(string: urlString)
-                    UIApplication.shared.open(url! as URL)
-                    self.dismiss(animated: true, completion: nil)
-                }
-                let cancel = UIAlertAction(title: "No", style: .cancel) { (acrion) in
-                    self.dismiss(animated: true, completion: nil)
-                }
-                alert.addAction(cancel)
-                alert.addAction(ok)
-                self.present(alert, animated: true, completion: nil)
+            let alert = UIAlertController(title: VerAlertTitle, message: VerAlertMsg, preferredStyle: .alert)
+            let ok = UIAlertAction(title: VerAlertOpen, style: .default) { (action) in
+                let urlString = "itms-apps://itunes.apple.com/app/id1622376481"
+                let url = NSURL(string: urlString)
+                UIApplication.shared.open(url! as URL)
+                self.dismiss(animated: true, completion: nil)
+            }
+            let cancel = UIAlertAction(title: VerAlertNo, style: .cancel) { (acrion) in
+                self.dismiss(animated: true, completion: nil)
+            }
+            alert.addAction(ok)
+            alert.addAction(cancel)
+            self.present(alert, animated: true, completion: nil)
         }
         #endif
     }

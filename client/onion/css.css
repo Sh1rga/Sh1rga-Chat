@@ -195,15 +195,11 @@ right:0;
 bottom:0;
 background-color:#111;
 }
-.loadCurtain img{;
+.loadCurtain img{
 position:fixed;
 top:calc(50% - 25vh);
 left:calc(50% - 25vh);;
 height:50vh;
-}
-.loadCurtain center{
-position:relative;
-top:10%;
 }
 @media only screen and (max-height:605px){
 textarea{height:113px}

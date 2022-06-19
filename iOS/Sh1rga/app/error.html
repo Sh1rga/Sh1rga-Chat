@@ -6,7 +6,7 @@
 <link rel="stylesheet" type="text/css" href="css.css">
 </head><body><bdo dir="ltr" id="bdo">
 <header>
-<div class="ls"><img src="../logo.png" aria-label="Shirga" alt="Sh1rga"></div>
+<div class="ls"><img src="logo.png" aria-label="Shirga" alt="Sh1rga"></div>
 <div class="ls" id="msg"><div class="msg" id="msgbox">Connection to server failed.<br>Please try again after a while.</div></div>
 </header>
 <center>
@@ -16,10 +16,8 @@ No Internet connection...
 <p><a href="sh1rga://reload">Reload</a></p>
 </div>
 </bdo></center></body>
-<script>
+<script>window.onload = function(){
 document.addEventListener('touchmove', (e) => { if (e.touches.length > 1) { e.preventDefault();}}, { passive: false });
 document.addEventListener("dblclick", function(e){ e.preventDefault();}, { passive: false });
-window.onload = function(){ $('#box').css('height',(window.innerHeight - 110) + 'px'); }
-window.onresize = function () { $('#box').css('height',(window.innerHeight - 110) + 'px'); }
-</script>
+}</script>
 </html>
