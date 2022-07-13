@@ -472,9 +472,11 @@ var cryptjson = JSON.parse(fs.readFileSync('./database/server.json', 'utf8'));
 
 var private_key = cryptico.generateRSAKey(enc_result, enc_bits);
 var public_key = cryptico.publicKeyString(private_key);
+server_decrypt = private_key;
+server_encrypt = public_key;
 
-cryptjson.private = private_key
-cryptjson.public = public_key
+cryptjson.private = server_decrypt
+cryptjson.public = server_encrypt
 
 const newJson = JSON.stringify(cryptjson)
 fs.writeFileSync('./database/server.json', newJson)
