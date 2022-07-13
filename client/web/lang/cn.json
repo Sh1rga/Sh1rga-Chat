@@ -19,8 +19,6 @@
 	
 	"cancel" : "取消",
 	"retry" : "重新执行",
-	"retrysuccess" : "重新运行。",
-	"retryfail" : "重新运行失败。",
 	"send" : "传动",
 	"sending" : "传递...",
 	"sent" : "已发送!",

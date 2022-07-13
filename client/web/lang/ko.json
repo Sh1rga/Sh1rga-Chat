@@ -19,8 +19,6 @@
 
 	"cancel" : "취소",
 	"retry" : "재실행",
-	"retrysuccess" : "다시 실행했습니다.",
-	"retryfail" : "재실행에 실패했습니다.",
 	"send" : "제출",
 	"sending" : "전송 중...",
 	"sent" : "보냈습니다!",

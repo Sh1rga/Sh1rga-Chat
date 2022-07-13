@@ -19,8 +19,6 @@
 	
 	"cancel" : "Cancel",
 	"retry" : "Retry",
-	"retrysuccess" : "Retried.",
-	"retryfail" : "Could not retry.",
 	"send" : "Send",
 	"sending" : "Sending...",
 	"sent" : "Sent!",

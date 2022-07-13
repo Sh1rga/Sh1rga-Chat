@@ -19,8 +19,6 @@
 	
 	"cancel" : "キャンセル",
 	"retry" : "再実行",
-	"retrysuccess" : "再実行しました。",
-	"retryfail" : "再実行に失敗しました。",
 	"send" : "送信",
 	"sending" : "送信中...",
 	"sent" : "送信しました！",

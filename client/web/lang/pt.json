@@ -19,8 +19,6 @@
 	
 	"cancel" : "Cancelar",
 	"retry" : "Tentativa",
-	"retrysuccess" : "Tentativa de novo.",
-	"retryfail" : "Não podia voltar a tentar.",
 	"send" : "Enviar",
 	"sending" : "Envio...",
 	"sent" : "Enviado!",

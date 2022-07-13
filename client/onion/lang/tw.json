@@ -19,8 +19,6 @@
 
 	"cancel" : "取消",
 	"retry" : "重試",
-	"retrysuccess" : "重試。",
-	"retryfail" : "無法重試。",
 	"send" : "發送",
 	"sending" : "發送...",
 	"sent" : "已發送！",

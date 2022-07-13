@@ -19,8 +19,6 @@
 	
 	"cancel" : "Abbrechen",
 	"retry" : "Wiederholung",
-	"retrysuccess" : "Wiederholt.",
-	"retryfail" : "Der Versuch konnte nicht wiederholt werden.",
 	"send" : "Senden",
 	"sending" : "Ich schicke...",
 	"sent" : "Gesendet!",
