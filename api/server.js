@@ -430,16 +430,16 @@ io.on(
     
 //Delete files in 12-hour cycles
 //もっと他にもいい方法あると思うけど、眠かったからこれで許して。
-cron.schedule('0 0 0 * * *', () => { time = "12"; deleteData(); newCrypt(); });
-cron.schedule('0 0 1 * * *', () => { time = "13"; deleteData(); });
-cron.schedule('0 0 2 * * *', () => { time = "14"; deleteData(); });
-cron.schedule('0 0 3 * * *', () => { time = "15"; deleteData(); });
-cron.schedule('0 0 4 * * *', () => { time = "16"; deleteData(); });
-cron.schedule('0 0 5 * * *', () => { time = "17"; deleteData(); });
-cron.schedule('0 0 6 * * *', () => { time = "18"; deleteData(); });
-cron.schedule('0 0 7 * * *', () => { time = "19"; deleteData(); });
-cron.schedule('0 0 8 * * *', () => { time = "20"; deleteData(); });
-cron.schedule('0 0 9 * * *', () => { time = "21"; deleteData(); });
+cron.schedule('0 0 0 * * *',  () => { time = "12"; deleteData(); newCrypt(); });
+cron.schedule('0 0 1 * * *',  () => { time = "13"; deleteData(); });
+cron.schedule('0 0 2 * * *',  () => { time = "14"; deleteData(); });
+cron.schedule('0 0 3 * * *',  () => { time = "15"; deleteData(); });
+cron.schedule('0 0 4 * * *',  () => { time = "16"; deleteData(); });
+cron.schedule('0 0 5 * * *',  () => { time = "17"; deleteData(); });
+cron.schedule('0 0 6 * * *',  () => { time = "18"; deleteData(); });
+cron.schedule('0 0 7 * * *',  () => { time = "19"; deleteData(); });
+cron.schedule('0 0 8 * * *',  () => { time = "20"; deleteData(); });
+cron.schedule('0 0 9 * * *',  () => { time = "21"; deleteData(); });
 cron.schedule('0 0 10 * * *', () => { time = "22"; deleteData(); });
 cron.schedule('0 0 11 * * *', () => { time = "23"; deleteData(); });
 cron.schedule('0 0 12 * * *', () => { time = "00"; deleteData(); newCrypt(); });
@@ -472,11 +472,9 @@ var cryptjson = JSON.parse(fs.readFileSync('./database/server.json', 'utf8'));
 
 var private_key = cryptico.generateRSAKey(enc_result, enc_bits);
 var public_key = cryptico.publicKeyString(private_key);
-server_decrypt = private_key;
-server_encrypt = public_key;
 
-cryptjson.private = server_decrypt
-cryptjson.public = server_encrypt
+cryptjson.private = private_key
+cryptjson.public = public_key
 
 const newJson = JSON.stringify(cryptjson)
 fs.writeFileSync('./database/server.json', newJson)

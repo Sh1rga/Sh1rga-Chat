@@ -1,4 +1,4 @@
-var version = "0.2.1";
+var version = "0.2.2";
 var socketTime = 0;
 var socketConnect = false;
 var server_encrypt = "";
@@ -58,7 +58,7 @@ $(window).on('load orientationchange resize', function() {
 
 function autoLangSet() {
   if (getParam('lang') == null) {
-	const langlist = ['ja', 'ru', 'ar', 'es', 'pt', 'fr', 'de', 'ko'];
+	const langlist = ['ja', 'ru', 'ar', 'es', 'pt', 'fr', 'de', 'ko', 'tok'];
 	const cnlanglist = ['zh-TW', 'zh-tw', 'zh-HK', 'zh-hk'];
 	if (langlist.includes(defaultLang.substr( 0, 2 ))) {
 		language = defaultLang.substr( 0, 2 );
@@ -68,15 +68,14 @@ function autoLangSet() {
 		language = "cn";
 	}
   }else{
-  	const langlist = ['en', 'ja', 'ru', 'cn', 'tw', 'ar', 'es', 'pt', 'fr', 'de', 'ko'];
+  	const langlist = ['en', 'ja', 'ru', 'cn', 'tw', 'ar', 'es', 'pt', 'fr', 'de', 'ko', 'tok'];
   	language = getParam('lang');
   }
   langset();
 }
 
 function langset() {
-$('#loadCurtain').css('visibility','unset');
-$('#loadCurtain').css('opacity','100%');
+$('#loadCurtain').show()
 $(function() { settinglangset();
   $.ajax({
     type: 'GET',
@@ -88,8 +87,10 @@ $(function() { settinglangset();
     	langjson = json;
     	if (language == "ar") {
 			document.getElementById('bdo').dir = "rtl";
+			$('#msgbox').css('right','-3px');
 		}else{
 			document.getElementById('bdo').dir = "ltr";
+			$('#msgbox').css('right','3px');
 		}
 		if (language == "cn") {
 			document.getElementById('html').lang = "zh-CN";
@@ -109,7 +110,7 @@ $(function() { settinglangset();
   			nowErrorView = "lang";
   		  }
   		}
-  		window.setTimeout("curtainFade();", 500);
+  		window.setTimeout("$('#loadCurtain').fadeOut(500)", 100);
     },
     function () {
     	langErrorFlag = true;
@@ -124,16 +125,6 @@ function sleep(msec) {
    return new Promise(function(resolve) {
       setTimeout(function() {resolve()}, msec);
    })
-}
-
-async function curtainFade() {
-var opacity = 100;
-for ( var i = 0;  i < 51;  i++ ) {
-	$('#loadCurtain').css('opacity',opacity + '%');
-	opacity -= 2;
-	await sleep(5);
-}
-$('#loadCurtain').css('visibility','hidden');
 }
 
 async function msgMove() {
@@ -215,6 +206,11 @@ if (langFlag == false) {
 	startView();
 	if (langErrorFlag == false && verErrorFlag == false && errorCheckEnd == true) {
   		document.getElementById('msg').innerHTML = '<div class="goodmsg" id="msgbox">' + langjson.loadingviewsuc + '</div>';
+  		if (language == "ar") {
+			$('#msgbox').css('right','-3px');
+		}else{
+			$('#msgbox').css('right','3px');
+		}
   		nowErrorView = "";
   		window.setTimeout("if (nowErrorView == '') { msgMove(); }", 2000);
 	}
@@ -234,11 +230,11 @@ function verChecker() { location.href = "sh1rga://appSettingLoad";
 }
 
 function startView() {
-	appBox.innerHTML = '<h2>' + langjson.startroom + '</h2><a href="javascript:sendStart();">' + langjson.start + '</a><p /><h2>' + langjson.joinroom + '</h2><form action=""><input type="number" id="input" autocomplete="off" required maxlength="12" alt="' + langjson.entertheroomid + '" enterkeyhint="done" pattern="^[0-9]+$"><button type="submit" onClick="Button();return false;">' + langjson.join + '</button></form><br><p><a href="javascript:settingView();">' + langjson.setting + '</a></p><p>Ver: ' + version + '</p><p><a class="nobox" href="' + address_web + '/tos?lang=' + language + '">' + langjson.tos + '</a></p>';
+	appBox.innerHTML = '<h2>' + langjson.startroom + '</h2><button onclick="sendStart();">' + langjson.start + '</button><p /><h2>' + langjson.joinroom + '</h2><form action=""><input type="number" id="input" autocomplete="off" required maxlength="12" alt="' + langjson.entertheroomid + '" enterkeyhint="done" pattern="^[0-9]+$" aria-label="' + langjson.entertheroomid + '"><button type="submit" onClick="Button();return false;">' + langjson.join + '</button></form><br><p><button onclick="settingView();">' + langjson.setting + '</button></p><p>Ver: ' + version + '</p><p><a class="nobox" href="' + address_web + '/tos?lang=' + language + '">' + langjson.tos + '</a></p>';
 }
 
 function langSelectView() {
-	appBox.innerHTML = '<div style="text-align:left;margin-left:5px"><a href="javascript:startView();">Back</a></div><h2 style="margin-top:-10px">Language</h2><p><select name="language" id="lang" size="12"><option value="en" selected>English</option><option value="ja">日本語</option><option value="ru">Русский</option><option value="cn">简体中文</option><option value="tw">繁體中文</option><option value="ar">عربي</option><option value="es">Español</option><option value="pt">Português</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="ko">한국어</option></select></p><p><a href="javascript:langSelect();">OK</a></p>';
+	appBox.innerHTML = '<div style="text-align:left;margin-left:5px"><button onclick="startView();">Back</button></div><h2 style="margin-top:-10px">Language</h2><p><select name="language" id="lang" size="12"><option value="en" selected>English</option><option value="ja">日本語</option><option value="ru">Русский</option><option value="cn">简体中文</option><option value="tw">繁體中文</option><option value="ar">عربي</option><option value="es">Español</option><option value="pt">Português</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="ko">한국어</option><option value="tok">toki pona</option></select></p><p><button onclick="langSelect();">OK</button></p>';
 	if (language == "ja"){
 	document.getElementById('lang').options[1].selected = true;
 	}else if (language == "ru"){
@@ -259,6 +255,8 @@ function langSelectView() {
 	document.getElementById('lang').options[9].selected = true;
 	}else if (language == "ko"){
 	document.getElementById('lang').options[10].selected = true;
+	}else if (language == "tok"){
+	document.getElementById('lang').options[11].selected = true;
 	}
 }
 
@@ -283,7 +281,7 @@ window.setTimeout("loopVerCheck();", 600000);
 }
 
 function loadingView() {
-	appBox.innerHTML = '<p><strong>' + langjson.nowloading + '</strong><br>' + langjson.loadingview1 + '<br>' + langjson.loadingview2 + '</p><br><p style="font-size:90%">' + langjson.loadingview3 + '<br><a href="javascript:preCryptRetry();">' + langjson.retry + '</a><br>' + langjson.loadingview4 + '</p>';
+	appBox.innerHTML = '<p><strong>' + langjson.nowloading + '</strong><br>' + langjson.loadingview1 + '<br>' + langjson.loadingview2 + '</p>';
 }
 
 function preCrypt() {
@@ -299,22 +297,13 @@ function preCrypt() {
 	}else{
 		cryptFlag = false;
 		$( '#input' ).val( '' ); 
-		appBox.innerHTML = '<p><strong>' + langjson.loadingviewsuc + '</strong></p><p style="padding:0 10px;margin:5px 0 0;color:#ccc">' + langjson.roomid + ': ' + roomID + '</p><p><a href="javascript:joinCryptSuc();">' + langjson.join + '</a></p>';
+		appBox.innerHTML = '<p><strong>' + langjson.loadingviewsuc + '</strong></p><p style="padding:0 10px;margin:5px 0 0;color:#ccc">' + langjson.roomid + ': ' + roomID + '</p><p><button onclick="joinCryptSuc();">' + langjson.join + '</a></p>';
 	}
 }
 
 function joinCryptSuc() {
 	var msgcrypt = cryptico.encrypt(roomID + my_encrypt, server_encrypt);
 	socket.emit( 'join', msgcrypt.cipher );
-}
-
-function preCryptRetry() {
-	if (cryptFlag == true) {
-		appBox.innerHTML = '<p><strong>' + langjson.nowloading + '</strong><br>' + langjson.loadingview1 + '<br>' + langjson.loadingview2 + '</p><br><p style="font-size:90%">' + langjson.loadingview3 + '<br><a href="javascript:preCryptRetry();">' + langjson.retry + '</a><br>' + langjson.retrysuccess + '</p>';
-		window.setTimeout("preCrypt();", 1000);
-	}else{
-		appBox.innerHTML = '<p><strong>' + langjson.nowloading + '</strong><br>' + langjson.loadingview1 + '<br>' + langjson.loadingview2 + '</p><br><p style="font-size:90%">' + langjson.loadingview3 + '<br><a href="javascript:preCryptRetry();">' + langjson.retry + '</a><br>' + langjson.retryfail + '</p>';
-	}
 }
 
 function sendStart() {
@@ -377,9 +366,9 @@ function sendCryptLoad() {
 
 function viewChat() { location.href = "sh1rga://appSettingLoad";
 	if (language == "ar") {
-	appBox.innerHTML = '<p style="padding:0 10px;margin:5px 0 0;text-align:right;color:#ccc">' + langjson.roomid + ': ' + roomID + flaghtml + '</p><textarea readonly id="get-message-area" alt="' + langjson.receivemess + '" style="background-color:#033;border-radius:20px 0 20px 20px;transform:translateX(20px)"></textarea><br><form action=""><textarea id="input" placeholder="' + langjson.entermess + '" alt="' + langjson.entermess + '" required style="background-color:#023;border-radius:20px 20px 20px 0;transform:translateX(-20px)"></textarea><br><a href="javascript:Button();">' + langjson.send + '</a>&nbsp;<a href="javascript:sendLoad();">' + langjson.reload + '</a>&nbsp;<a href="javascript:sendDelete();">' + langjson.delete + '</a></form><div id="status"></div>';
+	appBox.innerHTML = '<p style="padding:0 10px;margin:5px 0 0;text-align:right;color:#ccc" aria-hidden="true">' + langjson.roomid + ': ' + roomID + flaghtml + '</p><textarea readonly id="get-message-area" alt="' + langjson.receivemess + '" style="background-color:#033;border-radius:20px 0 20px 20px;transform:translateX(20px)" aria-label="' + langjson.receivemess + '"></textarea><br><form action=""><textarea id="input" placeholder="' + langjson.entermess + '" alt="' + langjson.entermess + '" required style="background-color:#023;border-radius:20px 20px 20px 0;transform:translateX(-20px)" aria-label="' + langjson.entermess + '"></textarea><br><button onclick="Button();return false;">' + langjson.send + '</button>&nbsp;<button onclick="sendLoad();return false;">' + langjson.reload + '</button>&nbsp;<button onclick="sendDelete();return false;">' + langjson.delete + '</button></form><div id="status"></div>';
 	}else{
-	appBox.innerHTML = '<p style="padding:0 10px;margin:5px 0 0;text-align:left;color:#ccc">' + langjson.roomid + ': ' + roomID + flaghtml + '</p><textarea readonly id="get-message-area" alt="' + langjson.receivemess + '" style="background-color:#033;border-radius:0 20px 20px 20px;transform:translateX(-20px)"></textarea><br><form action=""><textarea id="input" placeholder="' + langjson.entermess + '" alt="' + langjson.entermess + '" required style="background-color:#023;border-radius:20px 20px 0 20px;transform:translateX(20px)"></textarea><br><a href="javascript:Button();">' + langjson.send + '</a>&nbsp;<a href="javascript:sendLoad();">' + langjson.reload + '</a>&nbsp;<a href="javascript:sendDelete();">' + langjson.delete + '</a></form><div id="status"></div>';
+	appBox.innerHTML = '<p style="padding:0 10px;margin:5px 0 0;text-align:left;color:#ccc" aria-hidden="true">' + langjson.roomid + ': ' + roomID + flaghtml +'</p><textarea readonly id="get-message-area" alt="' + langjson.receivemess + '" style="background-color:#033;border-radius:0 20px 20px 20px;transform:translateX(-20px)" aria-label="' + langjson.receivemess + '"></textarea><br><form action=""><textarea id="input" placeholder="' + langjson.entermess + '" alt="' + langjson.entermess + '" required style="background-color:#023;border-radius:20px 20px 0 20px;transform:translateX(20px)" aria-label="' + langjson.entermess + '"></textarea><br><button onclick="Button();return false;">' + langjson.send + '</button>&nbsp;<button onclick="sendLoad();return false;">' + langjson.reload + '</button>&nbsp;<button onclick="sendDelete();return false;">' + langjson.delete + '</button></form><div id="status"></div>';
 	}
 }
 
@@ -403,13 +392,18 @@ function errorloop() {
   		document.getElementById('msg').innerHTML = '<div class="goodmsg" id="msgbox">Loading...</div>';
   	}
   }
+  if (language == "ar") {
+	  $('#msgbox').css('right','-3px');
+  }else{
+	  $('#msgbox').css('right','3px');
+  }
   window.setTimeout("errorloop();", 500);
 }
 
 socket.on('get-roomid', strMessage => {
 	strMessage = cryptico.decrypt(strMessage, my_decrypt).plaintext;
 	roomID = strMessage;
-	appBox.innerHTML = '<p><strong>' + langjson.waitjoin1 + '</strong><br><br><div style="font-size:150%">' + langjson.waitjoin2 + '</div><div style="font-size:150%"><strong style="-webkit-user-select:auto;user-select:auto;-webkit-touch-callout:auto;-webkit-user-drag:auto">' + roomID + '</strong></div><br><a href="javascript:sendFirstReload();">' + langjson.reload + '</a>&nbsp;<a href="javascript:sendDeleteForce();">' + langjson.cancel + '</a></p>';
+	appBox.innerHTML = '<p><strong>' + langjson.waitjoin1 + '</strong><br><br><div style="font-size:150%">' + langjson.waitjoin2 + '</div><div style="font-size:150%"><strong style="-webkit-user-select:auto;user-select:auto;-webkit-touch-callout:auto;-webkit-user-drag:auto">' + roomID + '</strong></div><br><button onclick="sendFirstReload();">' + langjson.reload + '</button>&nbsp;<button onclick="sendDeleteForce();">' + langjson.cancel + '</button></p>';
 	sendFirstLoad();
 })
 
@@ -472,7 +466,7 @@ socket.on('send-success', strMessage => {
 })
 
 socket.on('delete-success', strMessage => {
-	appBox.innerHTML = '<p>' + langjson.deleted + '</p><br><a href="javascript:Disconnect();">' + langjson.ok + '</a>';
+	appBox.innerHTML = '<p>' + langjson.deleted + '</p><br><button onclick="Disconnect();">' + langjson.ok + '</button>';
 })
 
 //error
@@ -481,20 +475,20 @@ socket.on('version-error', strMessage => {
 })
 
 socket.on('start-error', strMessage => {
-	appBox.innerHTML = '<p>' + langjson.starterror1 + '<br>' + langjson.starterror2 + '</p><br><a href="javascript:Disconnect();">' + langjson.ok + '</a>';
+	appBox.innerHTML = '<p>' + langjson.starterror1 + '<br>' + langjson.starterror2 + '</p><br><button onclick="Disconnect();">' + langjson.ok + '</button>';
 })
 
 socket.on('join-error', strMessage => {
-	appBox.innerHTML = '<p>' + langjson.joinerror + '</p><br><a href="javascript:Disconnect();">' + langjson.ok + '</a>';
+	appBox.innerHTML = '<p>' + langjson.joinerror + '</p><br><button onclick="Disconnect();">' + langjson.ok + '</button>';
 })
 
 socket.on('join-notfound', strMessage => {
 	join = false; location.href = "sh1rga://flag/join/false";
-	appBox.innerHTML = '<p>' + langjson.joinrnf + '</p><br><a href="javascript:Disconnect();">' + langjson.ok + '</a>';
+	appBox.innerHTML = '<p>' + langjson.joinrnf + '</p><br><button onclick="Disconnect();">' + langjson.ok + '</button>';
 })
 
 socket.on('joined', strMessage => {
-	appBox.innerHTML = '<p>' + langjson.joined1 + '<br>' + langjson.joined2 + '</p><br><a href="javascript:Disconnect();">' + langjson.ok + '</a>';
+	appBox.innerHTML = '<p>' + langjson.joined1 + '<br>' + langjson.joined2 + '</p><br><button onclick="Disconnect();">' + langjson.ok + '</button>';
 })
 
 socket.on('load-error', strMessage => {
@@ -506,7 +500,7 @@ socket.on('send-error', strMessage => {
 })
 
 socket.on('delete-error', strMessage => {
-	appBox.innerHTML = '<p>' + langjson.deletefail + '</p><br><a href="javascript:sendDeleteForce();">' + langjson.retry + '</a>&nbsp;<a href="javascript:Disconnect();">' + langjson.ok + '</a>';
+	appBox.innerHTML = '<p>' + langjson.deletefail + '</p><br><button onclick="sendDeleteForce();">' + langjson.retry + '</button>&nbsp;<button onclick="Disconnect();">' + langjson.ok + '</button>';
 })
 
 function sendDeleteForce() {
@@ -516,7 +510,7 @@ function sendDeleteForce() {
 
 socket.on('roomNotFound', strMessage => {
 	join = false; location.href = "sh1rga://flag/join/false";
-	appBox.innerHTML = '<p>' + langjson.roomnotfound1 + '<br>' + langjson.roomnotfound2 + '</p><br><a href="javascript:Disconnect();">' + langjson.ok + '</a>';
+	appBox.innerHTML = '<p>' + langjson.roomnotfound1 + '<br>' + langjson.roomnotfound2 + '</p><br><button onclick="Disconnect();">' + langjson.ok + '</button>';
 })
 
 socket.on('serverIsDown', strMessage => {
@@ -526,7 +520,7 @@ socket.on('serverIsDown', strMessage => {
 
 socket.on('roomFlagged', strMessage => {
 	join = false; location.href = "sh1rga://flag/join/false";
-	appBox.innerHTML = '<p>' + langjson.roomflagged1 + '<br>' + langjson.roomflagged2 + '</p><br><a href="javascript:Disconnect();">' + langjson.ok + '</a>';
+	appBox.innerHTML = '<p>' + langjson.roomflagged1 + '<br>' + langjson.roomflagged2 + '</p><br><button onclick="Disconnect();">' + langjson.ok + '</button>';
 })
 
 function Disconnect() {

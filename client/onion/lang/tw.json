@@ -8,8 +8,6 @@
 	"nowloading" : "正在加載...",
 	"loadingview1" : "此操作可能需要一些時間。",
 	"loadingview2" : "請稍候，不要執行任何不必要的操作。",
-	"loadingview3" : "只有在您確定完全失敗時才按。",
-	"loadingview4" : "如果瀏覽器沒有響應，很有可能它工作正常。",
 	"loadingviewsuc" : "加載完成！",
 
 	"roomid" : "房間 ID",

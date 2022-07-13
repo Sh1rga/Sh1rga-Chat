@@ -35,9 +35,11 @@ class ViewController: UIViewController , WKNavigationDelegate , WKUIDelegate , U
         webView.uiDelegate = self
         view = webView
         autoSleepDisable = UserDefaults.standard.bool(forKey: "chat.autoSleepDisable")
-        #if ALTRELEASE
+        #if !RELEASEBYPASS
+        //if ALTRELEASE
         enableBackground = UserDefaults.standard.bool(forKey: "chat.enableBackground")
-        #elseif RELEASEBYPASS
+        #else
+        //#elseif RELEASEBYPASS
         enableMuteWord = UserDefaults.standard.bool(forKey: "chat.enableMuteWord")
         muteWord = UserDefaults.standard.string(forKey: "chat.muteWord")
         #endif
@@ -82,6 +84,9 @@ class ViewController: UIViewController , WKNavigationDelegate , WKUIDelegate , U
         }
         if Locale.current.languageCode == "ko" {
             appDelegate.lang = "ko"
+        }
+        if Locale.current.languageCode == "tok" {
+            appDelegate.lang = "tok"
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [self] in
             if (internetConnection == true) {
@@ -220,6 +225,8 @@ class ViewController: UIViewController , WKNavigationDelegate , WKUIDelegate , U
                     content.subtitle = "Вы получаете новое сообщение"
                 }else if appDelegate.lang == "ko" {
                     content.subtitle = "새 메시지를 받습니다"
+                }else if appDelegate.lang == "tok" {
+                    content.subtitle = "sina jo e sin toki"
                 }else{
                     content.subtitle = "You get a new message"
                 }
@@ -269,6 +276,9 @@ class ViewController: UIViewController , WKNavigationDelegate , WKUIDelegate , U
                 }else if appDelegate.lang == "ko" {
                     content.subtitle = "사용자가 채팅방에 참여했습니다"
                     content.body = "대화를 시작합시다!"
+                }else if appDelegate.lang == "tok" {
+                    content.subtitle = "ona li kama"
+                    content.body = "o open e toki!"
                 }else{
                     content.subtitle = "User has joined the room"
                     content.body = "Let's start a conversation!"
@@ -305,14 +315,16 @@ class ViewController: UIViewController , WKNavigationDelegate , WKUIDelegate , U
                     webView.evaluateJavaScript("document.getElementById('setting-autoSleepDisable').innerHTML = '<a href=\"sh1rga://setting/autoSleepDisable/true\" style=\"color:#ddd\">OFF</a>'")
                 }
                 
-                #if ALTRELEASE
+                #if !RELEASEBYPASS
+                //#if ALTRELEASE
                 webView.evaluateJavaScript("document.getElementById('setting-altchange').innerHTML = '<div class=\"setbox\"><h3 style=\"margin:5px\">' + settingLangJson.background + '</h3><div style=\"padding:5px;color:#ccc\">' + settingLangJson.background_1 + '<br>' + settingLangJson.background_2 + '<br></div><div id=\"setting-enableBackground\"><a>&nbsp; &nbsp; &nbsp;</a></div></div><br>'")
                 if enableBackground == true {
                     webView.evaluateJavaScript("document.getElementById('setting-enableBackground').innerHTML = '<a href=\"sh1rga://setting/enableBackground/false\">ON</a>'")
                 }else{
                     webView.evaluateJavaScript("document.getElementById('setting-enableBackground').innerHTML = '<a href=\"sh1rga://setting/enableBackground/true\" style=\"color:#ddd\">OFF</a>'")
                 }
-                #elseif RELEASEBYPASS
+                #else
+                //#elseif RELEASEBYPASS
                 if allowMuteWord == true {
                     webView.evaluateJavaScript("document.getElementById('setting-altchange').innerHTML = '<div class=\"setbox\"><h3 style=\"margin:5px\">' + settingLangJson.muteword + '</h3><div style=\"padding:5px;color:#ccc\">' + settingLangJson.muteword_1 + '<br></div><div style=\"display:inline\" id=\"setting-enableMuteWord\"><a>&nbsp; &nbsp; &nbsp;</a></div>&nbsp; &nbsp;<a href=\"sh1rga://setting/muteWord\">' + langjson.setting + '</a></div><br>'")
                     if enableMuteWord == true {
@@ -381,7 +393,8 @@ class ViewController: UIViewController , WKNavigationDelegate , WKUIDelegate , U
                 
             }
             
-            #if ALTRELEASE
+            #if !RELEASEBYPASS
+            //#if ALTRELEASE
             if navigationAction.request.url!.absoluteString == "sh1rga://setting/enableBackground/true" {
                 enableBackground = true
                 UserDefaults.standard.set(true, forKey: "chat.enableBackground")
@@ -392,7 +405,8 @@ class ViewController: UIViewController , WKNavigationDelegate , WKUIDelegate , U
                 UserDefaults.standard.set(false, forKey: "chat.enableBackground")
                 webView.evaluateJavaScript("document.getElementById('setting-enableBackground').innerHTML = '<a href=\"sh1rga://setting/enableBackground/true\" style=\"color:#ddd\">OFF</a>'")
             }
-            #elseif RELEASEBYPASS
+            #else
+            //#elseif RELEASEBYPASS
             if allowMuteWord == true {
                 if navigationAction.request.url!.absoluteString == "sh1rga://setting/enableMuteWord/true" {
                     enableMuteWord = true
@@ -517,6 +531,10 @@ override var keyCommands: [UIKeyCommand]? {
             VerAlertTitle = "버전이 오래되었습니다"
             VerAlertOpen = "열려 있는"
             VerAlertNo = "아니"
+        }else if appDelegate.lang == "tok" {
+            VerAlertTitle = "age ona ni li sin ala"
+            VerAlertOpen = "open"
+            VerAlertNo = "ala"
         }
         #if ALTRELEASE
         var VerAlertMsg = "Do you want to open the AltStore?\nOr do you want to update directly?"
@@ -551,6 +569,9 @@ override var keyCommands: [UIKeyCommand]? {
         }else if appDelegate.lang == "ko" {
             VerAlertMsg = "AltStore를 여시겠습니까?\n아니면 직접 업데이트하시겠습니까?"
             VerAlertDirectUpdate = "직접 업데이트"
+        }else if appDelegate.lang == "tok" {
+            VerAlertMsg = "open e ilo AltStore ala sona sin kepeken ni?"
+            VerAlertDirectUpdate = "sona sin"
         }
         let alert = UIAlertController(title: VerAlertTitle, message: VerAlertMsg, preferredStyle: .alert)
         let ok = UIAlertAction(title: VerAlertOpen, style: .default) { (action) in
@@ -596,6 +617,8 @@ override var keyCommands: [UIKeyCommand]? {
             VerAlertMsg = "Вы хотите открыть App Store?"
         }else if appDelegate.lang == "ko" {
             VerAlertMsg = "앱 스토어를 열시겠습니까?"
+        }else if appDelegate.lang == "tok" {
+            VerAlertMsg = "open e ilo App Store ala open ni?"
         }
         let queue = DispatchQueue.main
         queue.sync{

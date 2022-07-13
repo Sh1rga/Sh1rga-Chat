@@ -8,8 +8,6 @@
 	"nowloading" : "Chargement...",
 	"loadingview1" : "Cela peut prendre un certain temps.",
 	"loadingview2" : "Veuillez ne pas opérer et attendre.",
-	"loadingview3" : "N'appuyez que si vous êtes sûr qu'il ne fonctionne pas correctement.",
-	"loadingview4" : "Si le navigateur ne répond pas, il fonctionne correctement dans la plupart des cas.",
 	"loadingviewsuc" : "Chargement terminé !",
 	
 	"roomid" : "ID de la pièce",

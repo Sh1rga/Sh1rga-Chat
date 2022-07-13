@@ -8,8 +8,6 @@
 	"nowloading" : "Laden...",
 	"loadingview1" : "Dies kann einige Zeit in Anspruch nehmen.",
 	"loadingview2" : "Bitte nicht operieren und warten.",
-	"loadingview3" : "Drücken Sie nur, wenn Sie sicher sind, dass es nicht richtig funktioniert.",
-	"loadingview4" : "Wenn der Browser nicht antwortet, funktioniert er in den meisten Fällen korrekt.",
 	"loadingviewsuc" : "Laden abgeschlossen!",
 	
 	"roomid" : "Raum-ID",

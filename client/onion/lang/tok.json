@@ -1,0 +1,67 @@
+{
+	"startroom" : "open e tomo",
+	"start" : "open",
+	"joinroom" : "tawa e tomo",
+	"entertheroomid" : "sitelen e nanpa tomo",
+	"join" : "tawa",
+	
+	"nowloading" : "tenpo ni la ilo Sh1rga li pali...",
+	"loadingview1" : "ken la sina wile e tenpo li mute",
+	"loadingview2" : "o awen tawa kama pi pali",
+	"loadingviewsuc" : "pali li pini!",
+	
+	"roomid" : "nanpa tomo",
+	"receivemess" : "toki ona",
+	"entermess" : "sitelen e toki sina",
+	
+	"waitjoin1" : "o awen tawa kama pi ona",
+	"waitjoin2" : "nanpa tomo ni li ",
+	
+	"cancel" : "pini",
+	"retry" : "tawa awen lukin",
+	"retrysuccess" : "lukin li pini",
+	"retryfail" : "ken lukin ala",
+	"send" : "pana",
+	"sending" : "tenpo ni la pana...",
+	"sent" : "pana li pini!",
+	"sentfail" : "pana li pakala",
+	"delete" : "moli e tomo",
+	"deletecheck" : "moli e tomo ala awen e tomo? (tawa awen lukin la moli e tomo)",
+	"deleting" : "tenpo ni la moli",
+	"deleted" : "moli li pini!",
+	"deletefail" : "moli li pakala",
+	"reload" : "tawa awen sona",
+	"reloadfail" : "tawa awen sona li pakala",
+	"ok" : "pona",
+	
+	"starterror1" : "open e tomo li pakala",
+	"starterror2" : "o tawa awen open",
+	
+	"joinerror" : "tawa e tomo li pakala tan ni: ijo tan",
+	"joinrnf" : "tawa e tomo li pakala tan ni: ken lukin e tomo ala",
+	"joined1" : "tawa tomo li pakala",
+	"joined2" : "pini la wan jan li tawa e tomo",
+	
+	"roomnotfound1" : "ken lukin e tomo ala",
+	"roomnotfound2" : "pini la tomo li moli anu tomo li lape",
+	
+	"serverdown1" : "jan pali pi pana li pini.",
+	"serverdown2" : "o lukin e ilo Twitter anu ante",
+	
+	"roomflagged1" : "tomo li jo len.",
+	"roomflagged2" : "ken toki ala.",
+	
+	"oldver1" : "age ona ni li sin ala",
+	"oldver2" : "o lipu li sin",
+	
+	"notconnect_re" : "tawa awen toki lon jan pali pi pana...",
+	"notconnect_1" : "toki lon jan pali pi pana li pini.",
+	"notconnect10_1" : "ken toki kepeken jan pali pi pana ala.",
+	"notconnect30_1" : "toki lon jan pali pi pana li pakala.",
+	"notconnect30_2" : "o tawa awen toki lon jan pali pi pana.",
+	
+	"setting" : "ante e ken",
+	"tos" : "sina li kepeken e ilo Sh1rga la sina li pilin sama e Sh1rga ken lawa",
+	
+	"" : ""
+}

@@ -8,8 +8,6 @@
 	"nowloading" : "Now Loading...",
 	"loadingview1" : "This operation may take some time.",
 	"loadingview2" : "Please wait without performing any unnecessary operations.",
-	"loadingview3" : "Press only if you are sure you have completely failed.",
-	"loadingview4" : "If the browser is not responding, there is a high probability that it is working properly.",
 	"loadingviewsuc" : "Loading complete!",
 	
 	"roomid" : "Room ID",

@@ -8,8 +8,6 @@
 	"nowloading" : "正在加载...",
 	"loadingview1" : "这可能需要一些时间。",
 	"loadingview2" : "请不要操作和等待。",
-	"loadingview3" : "只有当你确定它不能正常工作时才按。",
-	"loadingview4" : "如果浏览器没有反应，在大多数情况下，它的工作是正确的。",
 	"loadingviewsuc" : "加载完毕!",
 	
 	"roomid" : "房间编号",

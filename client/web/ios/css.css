@@ -34,6 +34,7 @@ border-width:2px;
 cursor:pointer;
 }
 .nobox{
+font-weight:normal;
 color:#fff;
 height:auto;
 background-color:rgba(0, 0, 0, 0);
@@ -84,6 +85,7 @@ user-select:auto;
 cursor:text;
 }
 button{
+width:auto;
 font-size:16px;
 height:36px;
 color:#00b0ff;

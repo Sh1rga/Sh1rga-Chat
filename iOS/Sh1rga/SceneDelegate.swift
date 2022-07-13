@@ -45,7 +45,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, AVAudioPlayerDelegate {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
         
-        #if ALTRELEASE
+        #if !RELEASEBYPASS
+        //#if ALTRELEASE
         enableBackground = UserDefaults.standard.bool(forKey: "chat.enableBackground")
         if enableBackground == true && playing == true {
             appDelegate.audioPlayer.stop()
@@ -68,7 +69,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, AVAudioPlayerDelegate {
         view.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
         view.backgroundColor = UIColor(red: 17/255, green: 17/255, blue: 17/255, alpha: 1.0)
         
-        #if ALTRELEASE
+        #if !RELEASEBYPASS
+        //#if ALTRELEASE
         enableBackground = UserDefaults.standard.bool(forKey: "chat.enableBackground")
         if enableBackground == true && appDelegate.joinFlag == true {
         do {
@@ -93,6 +95,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, AVAudioPlayerDelegate {
     }
     
     func backEndTask() {
+        
         let content: UNMutableNotificationContent = UNMutableNotificationContent()
         content.title = "Sh1rga Chat"
         
@@ -126,6 +129,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, AVAudioPlayerDelegate {
         }else if appDelegate.lang == "ko" {
             content.subtitle = "백그라운드에서 로드가 중지되었습니다..."
             content.body = "앱을 다시 열 때까지 메시지를 받을 수 없습니다."
+        }else if appDelegate.lang == "tok" {
+            content.subtitle = "pali li pini..."
+            content.body = "ilo Sh1rga li open la pali li awen tawa open."
         }else{
             content.subtitle = "Stopped loading in background..."
             content.body = "Cannot receive messages until the app is reopened."

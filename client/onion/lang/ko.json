@@ -8,8 +8,6 @@
 	"nowloading" : "로드 중...",
 	"loadingview1" : "이 시간이 걸릴 수 있습니다.",
 	"loadingview2" : "작동하지 않고 기다려 주세요.",
-	"loadingview3" : "제대로 작동하지 않는다고 확신할 수 있는 경우에만 누릅니다.",
-	"loadingview4" : "브라우저가 응답하지 않으면 대부분의 경우 제대로 작동합니다.",
 	"loadingviewsuc" : "로딩 완료!",
 
 	"roomid" : "룸 ID",

@@ -8,8 +8,6 @@
 	"nowloading" : "読み込み中...",
 	"loadingview1" : "これには時間がかかる場合があります。",
 	"loadingview2" : "操作をせずにそのままお待ち下さい。",
-	"loadingview3" : "正常に動作していないと確信できる場合にのみ押してください。",
-	"loadingview4" : "ブラウザが応答していなければ、殆どの場合で正しく動作しています。",
 	"loadingviewsuc" : "読み込み完了！",
 	
 	"roomid" : "ルームID",
