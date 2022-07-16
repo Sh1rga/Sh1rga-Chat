@@ -234,7 +234,7 @@ function startView() {
 }
 
 function langSelectView() {
-	appBox.innerHTML = '<div style="text-align:left;margin-left:5px"><button onclick="startView();">Back</button></div><h2 style="margin-top:-10px">Language</h2><p><select name="language" id="lang" size="12"><option value="en" selected>English</option><option value="ja">日本語</option><option value="ru">Русский</option><option value="cn">简体中文</option><option value="tw">繁體中文</option><option value="ar">عربي</option><option value="es">Español</option><option value="pt">Português</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="ko">한국어</option><option value="tok">toki pona</option></select></p><p><button onclick="langSelect();">OK</button></p>';
+	appBox.innerHTML = '<div style="text-align:left;margin-left:5px"><button onclick="startView();">Back</button></div><h2 style="margin-top:-10px">Language</h2><p><select name="language" id="lang" size="12"><option value="en" selected>English</option><option value="ja">日本語</option><option value="ru">Русский</option><option value="cn">简体中文</option><option value="tw">繁體中文</option><option value="ar">العربية</option><option value="es">Español</option><option value="pt">Português</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="ko">한국어</option><option value="tok">toki pona</option></select></p><p><button onclick="langSelect();">OK</button></p>';
 	if (language == "ja"){
 	document.getElementById('lang').options[1].selected = true;
 	}else if (language == "ru"){
