@@ -242,6 +242,8 @@ function langSelectView() {
 	document.getElementById('lang').options[10].selected = true;
 	}else if (language == "tok"){
 	document.getElementById('lang').options[11].selected = true;
+	}else{
+	document.getElementById('lang').options[0].selected = true;
 	}
 }
 
