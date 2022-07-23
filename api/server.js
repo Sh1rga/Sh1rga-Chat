@@ -455,7 +455,6 @@ io.sockets.emit("version", version )
 }
 
 function newCrypt() {
-if (stopServer == false) {
 try {
 for (var i = 0; i < enc_len; i++) {
 	enc_result += enc_str[Math.floor(Math.random() * enc_strLen)];
@@ -477,10 +476,8 @@ io.sockets.emit("cryptload", public_key)
 console.log( 'NewCrypt: ' + public_key );
 } catch { newCrypt(); }
 }
-}
 
 function deleteData() {
-  if (stopServer == false) {
     //Counter
     console.log( 'Counter: ' + counter );
     try {
@@ -507,7 +504,6 @@ function deleteData() {
     }
     io.socket.emit( 'flag-enable', flag_enable )
     console.log( 'Flag: ' + flag_enable );
-  }
 }
 
 //Server setup
