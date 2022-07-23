@@ -1,4 +1,4 @@
-var version = "0.2.2";
+var version = "0.3.0";
 var socketTime = 0;
 var socketConnect = false;
 var server_encrypt = "";
@@ -45,16 +45,9 @@ window.onload = function(){
 	autoLangSet();
 	socketTimeCounter();
 	errorloop();
-	$('#box').css('height',(window.innerHeight - 130) + 'px');
 	document.addEventListener('touchmove', (e) => { if (e.touches.length > 1) { e.preventDefault();}}, { passive: false });
 	document.addEventListener("dblclick", function(e){ e.preventDefault();}, { passive: false });
 }
-window.onresize = function () {
-	$('#box').css('height',(window.innerHeight - 130) + 'px');
-}
-$(window).on('load orientationchange resize', function() {
-    window.setTimeout("$('#box').css('height',(window.innerHeight - 130) + 'px');", 50);
-});
 
 function autoLangSet() {
   if (getParam('lang') == null) {
@@ -128,21 +121,9 @@ function sleep(msec) {
 }
 
 async function msgMove() {
-var top = 0;
-nowErrorView == ''
-if (window.innerWidth <= 599) {
-		top = 17;
-	}else{
-		top = 0;
-	}
-for ( var i = 0;  i < 201;  i++ ) {
-  if (nowErrorView == '') {
-	$('#msgbox').css('top',top + 'px');
-	top -= 1;
-	await sleep(2.5);
-  }
-}
-if (nowErrorView == '') { document.getElementById('msg').innerHTML = ''; }
+	nowErrorView == ''
+	$('#msgbox').fadeOut(500);
+	window.setTimeout("if (nowErrorView == '') { document.getElementById('msg').innerHTML = ''; }", 500);
 }
 
 var connected = false;
@@ -207,9 +188,9 @@ if (langFlag == false) {
 	if (langErrorFlag == false && verErrorFlag == false && errorCheckEnd == true) {
   		document.getElementById('msg').innerHTML = '<div class="goodmsg" id="msgbox">' + langjson.loadingviewsuc + '</div>';
   		if (language == "ar") {
-			$('#msgbox').css('right','-3px');
+			$('#msgbox').css('right','-8px');
 		}else{
-			$('#msgbox').css('right','3px');
+			$('#msgbox').css('right','8px');
 		}
   		nowErrorView = "";
   		window.setTimeout("if (nowErrorView == '') { msgMove(); }", 2000);
@@ -230,11 +211,15 @@ function verChecker() {
 }
 
 function startView() {
-	appBox.innerHTML = '<h2>' + langjson.startroom + '</h2><button onclick="sendStart();">' + langjson.start + '</button><p /><h2>' + langjson.joinroom + '</h2><form action=""><input type="number" id="input" autocomplete="off" required maxlength="12" alt="' + langjson.entertheroomid + '" enterkeyhint="done" pattern="^[0-9]+$" aria-label="' + langjson.entertheroomid + '"><button type="submit" onClick="Button();return false;">' + langjson.join + '</button></form><br><p><button onclick="langSelectView();">Language</button></p><p>Ver: ' + version + '</p><p><a class="nobox" href="' + address_web + '/tos?lang=' + language + '" target="_blank" rel="noopener noreferrer">' + langjson.tos + '</a></p>';
+	if (language == "ar") {
+	  appBox.innerHTML = '<h1 aria-label="Shirga Chat">Sh1rga Chat</h1><div class="setbox"><h2 style="margin:8px">' + langjson.startroom + '</h2><button onclick="sendStart();" style="margin-bottom:8px">' + langjson.start + '</button></div><br><div class="setbox"><h2 style="margin:8px">' + langjson.joinroom + '</h2><form action="" style="margin-bottom:8px"><input type="number" id="input" autocomplete="off" required maxlength="12" alt="' + langjson.entertheroomid + '" enterkeyhint="done" pattern="^[0-9]+$" aria-label="' + langjson.entertheroomid + '" style="border-radius:0 32px 32px 0" dir="ltr"><button type="submit" onClick="Button();return false;" style="border-radius:32px 0 0 32px;padding-right:14px">' + langjson.join + '</button></form></div><br><p>Ver: ' + version + '</p><p><a class="nobox" href="' + address_web + '/tos?lang=' + language + '" target="_blank" rel="noopener noreferrer">' + langjson.tos + '</a></p><p><button onclick="langSelectView();">Language</button></p>';
+	}else{
+	  appBox.innerHTML = '<h1 aria-label="Shirga Chat">Sh1rga Chat</h1><div class="setbox"><h2 style="margin:8px">' + langjson.startroom + '</h2><button onclick="sendStart();" style="margin-bottom:8px">' + langjson.start + '</button></div><br><div class="setbox"><h2 style="margin:8px">' + langjson.joinroom + '</h2><form action="" style="margin-bottom:8px"><input type="number" id="input" autocomplete="off" required maxlength="12" alt="' + langjson.entertheroomid + '" enterkeyhint="done" pattern="^[0-9]+$" aria-label="' + langjson.entertheroomid + '"><button type="submit" onClick="Button();return false;" style="border-radius:0 32px 32px 0;padding-left:14px">' + langjson.join + '</button></form></div><br><p>Ver: ' + version + '</p><p><a class="nobox" href="' + address_web + '/tos?lang=' + language + '" target="_blank" rel="noopener noreferrer">' + langjson.tos + '</a></p><p><button onclick="langSelectView();">Language</button></p>';
+	}
 }
 
 function langSelectView() {
-	appBox.innerHTML = '<div style="text-align:left;margin-left:5px"><button onclick="startView();">Back</button></div><h2 style="margin-top:-10px">Language</h2><p><select name="language" id="lang" size="12"><option value="en" selected>English</option><option value="ja">日本語</option><option value="ru">Русский</option><option value="cn">简体中文</option><option value="tw">繁體中文</option><option value="ar">العربية</option><option value="es">Español</option><option value="pt">Português</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="ko">한국어</option><option value="tok">toki pona</option></select></p><p><button onclick="langSelect();">OK</button></p>';
+	appBox.innerHTML = '<div style="text-align:left;margin-left:5px"><button onclick="startView();">Back</button></div><h2 style="margin-top:-10px">Language</h2><p><select name="language" id="lang" size="12" selected dir="ltr"><option value="en">English</option><option value="ja">日本語</option><option value="ru">Русский</option><option value="cn">简体中文</option><option value="tw">繁體中文</option><option value="ar">العربية</option><option value="es">Español</option><option value="pt">Português</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="ko">한국어</option><option value="tok">toki pona</option></select></p><p><button onclick="langSelect();">OK</button></p>';
 	if (language == "ja"){
 	document.getElementById('lang').options[1].selected = true;
 	}else if (language == "ru"){
@@ -297,7 +282,7 @@ function preCrypt() {
 	}else{
 		cryptFlag = false;
 		$( '#input' ).val( '' ); 
-		appBox.innerHTML = '<p><strong>' + langjson.loadingviewsuc + '</strong></p><p style="padding:0 10px;margin:5px 0 0;color:#ccc">' + langjson.roomid + ': ' + roomID + '</p><p><button onclick="joinCryptSuc();">' + langjson.join + '</a></p>';
+		appBox.innerHTML = '<p><strong>' + langjson.loadingviewsuc + '</strong></p><p style="padding:0 10px;margin:5px 0 0;color:#ccc">' + langjson.roomid + ': ' + roomID + '</p><p><button onclick="joinCryptSuc();">' + langjson.join + '</button></p>';
 	}
 }
 
@@ -325,8 +310,9 @@ function sendLoad() {
 		window.setTimeout('reloadDelay = false;',1000);
 		socket.emit( 'load', userID_crypt );
 	}
-	if (deletePress != 0) {
-		document.getElementById('status').innerHTML = '';
+	if (deletePress != 0 && nowErrorView == "deletecheck") {
+		nowErrorView = "";
+		msgMove();
 	}
 	deletePress = 0;
 }
@@ -343,9 +329,14 @@ function sendSend() {
 		inputText = cryptico.encrypt(string_to_utf8_hex_string($( '#input' ).val()), encrypt_key);
 		var msgcrypt = cryptico.encrypt(userID + inputText.cipher, server_encrypt);
 		socket.emit( 'send', msgcrypt.cipher );
-		document.getElementById('status').innerHTML = langjson.sending;
+	}
+	if (deletePress != 0 && nowErrorView == "deletecheck") {
+		nowErrorView = "";
 	}
 	deletePress = 0;
+	if (serverErrorFlag == false && langErrorFlag == false && latestError == "" && nowErrorView == "") {
+		document.getElementById('msg').innerHTML = '<div class="goodmsg" id="msgbox">' + langjson.sending + '</div>';
+	}
 }
 
 function sendDelete() {
@@ -355,8 +346,17 @@ function sendDelete() {
 		deletePress = 0;
 		socket.emit( 'delete', userID_crypt );
 		appBox.innerHTML = '<p>' + langjson.deleting + '</p>';
+		if (nowErrorView == "deletecheck") {
+			nowErrorView = "";
+			msgMove();		
+		}
 	}else{
-		document.getElementById('status').innerHTML = langjson.deletecheck;
+		if (serverErrorFlag == false) {
+			document.getElementById('msg').innerHTML = '<div class="msg" id="msgbox">' + langjson.deletecheck + '</div>';
+			nowErrorView = "deletecheck";
+		}else{
+			deletePress = 0;
+		}
 	}
 }
 
@@ -366,9 +366,9 @@ function sendCryptLoad() {
 
 function viewChat() {
 	if (language == "ar") {
-	appBox.innerHTML = '<p style="padding:0 10px;margin:5px 0 0;text-align:right;color:#ccc" aria-hidden="true">' + langjson.roomid + ': ' + roomID + '</p><textarea readonly id="get-message-area" alt="' + langjson.receivemess + '" style="background-color:#033;border-radius:20px 0 20px 20px;transform:translateX(20px)" aria-label="' + langjson.receivemess + '"></textarea><br><form action=""><textarea id="input" placeholder="' + langjson.entermess + '" alt="' + langjson.entermess + '" required style="background-color:#023;border-radius:20px 20px 20px 0;transform:translateX(-20px)" aria-label="' + langjson.entermess + '"></textarea><br><button onclick="Button();return false;">' + langjson.send + '</button>&nbsp;<button onclick="sendLoad();return false;">' + langjson.reload + '</button>&nbsp;<button onclick="sendDelete();return false;">' + langjson.delete + '</button></form><div id="status"></div>';
+	appBox.innerHTML = '<p style="height:24px;padding:0 10px;margin:5px 0 0;text-align:right;color:#ccc" aria-hidden="true">' + langjson.roomid + ': ' + roomID + '</p><textarea readonly id="get-message-area" alt="' + langjson.receivemess + '" style="background-color:#033;border-radius:20px 0 20px 20px;transform:translateX(20px)" aria-label="' + langjson.receivemess + '"></textarea><br><form action="" style="height:calc(50% - 102px)"><textarea id="input" placeholder="' + langjson.entermess + '" alt="' + langjson.entermess + '" required style="height:100%;background-color:#023;border-radius:20px 20px 20px 0;transform:translateX(-20px)" aria-label="' + langjson.entermess + '"></textarea><br><div style="display:inline-flex;align-content:center;flex-direction:row-reverse"><button onclick="Button();return false;">' + langjson.send + '</button>&nbsp;<button onclick="sendLoad();return false;">' + langjson.reload + '</button>&nbsp;<button onclick="sendDelete();return false;" style="color:#f33;border-color:#534">' + langjson.delete + '</button></div></form>';
 	}else{
-	appBox.innerHTML = '<p style="padding:0 10px;margin:5px 0 0;text-align:left;color:#ccc" aria-hidden="true">' + langjson.roomid + ': ' + roomID + '</p><textarea readonly id="get-message-area" alt="' + langjson.receivemess + '" style="background-color:#033;border-radius:0 20px 20px 20px;transform:translateX(-20px)" aria-label="' + langjson.receivemess + '"></textarea><br><form action=""><textarea id="input" placeholder="' + langjson.entermess + '" alt="' + langjson.entermess + '" required style="background-color:#023;border-radius:20px 20px 0 20px;transform:translateX(20px)" aria-label="' + langjson.entermess + '"></textarea><br><button onclick="Button();return false;">' + langjson.send + '</button>&nbsp;<button onclick="sendLoad();return false;">' + langjson.reload + '</button>&nbsp;<button onclick="sendDelete();return false;">' + langjson.delete + '</button></form><div id="status"></div>';
+	appBox.innerHTML = '<p style="height:24px;padding:0 10px;margin:5px 0 0;text-align:left;color:#ccc" aria-hidden="true">' + langjson.roomid + ': ' + roomID + '</p><textarea readonly id="get-message-area" alt="' + langjson.receivemess + '" style="background-color:#033;border-radius:0 20px 20px 20px;transform:translateX(-20px)" aria-label="' + langjson.receivemess + '"></textarea><br><form action="" style="height:calc(50% - 102px)"><textarea id="input" placeholder="' + langjson.entermess + '" alt="' + langjson.entermess + '" required style="height:100%;background-color:#023;border-radius:20px 20px 0 20px;transform:translateX(20px)" aria-label="' + langjson.entermess + '"></textarea><br><div style="display:inline-flex;align-content:center;flex-direction:row-reverse"><button onclick="Button();return false;">' + langjson.send + '</button>&nbsp;<button onclick="sendLoad();return false;">' + langjson.reload + '</button>&nbsp;<button onclick="sendDelete();return false;" style="color:#f33;border-color:#534">' + langjson.delete + '</button></div></form>';
 	}
 }
 
@@ -393,17 +393,17 @@ function errorloop() {
   	}
   }
   if (language == "ar") {
-	  $('#msgbox').css('right','-3px');
+	  $('#msgbox').css('right','-8px');
   }else{
-	  $('#msgbox').css('right','3px');
+	  $('#msgbox').css('right','8px');
   }
-  window.setTimeout("errorloop();", 500);
+  window.setTimeout("errorloop();", 200);
 }
 
 socket.on('get-roomid', strMessage => {
 	strMessage = cryptico.decrypt(strMessage, my_decrypt).plaintext;
 	roomID = strMessage;
-	appBox.innerHTML = '<p><strong>' + langjson.waitjoin1 + '</strong><br><br><div style="font-size:150%">' + langjson.waitjoin2 + '</div><div style="font-size:150%"><strong style="-webkit-user-select:auto;user-select:auto;-webkit-touch-callout:auto;-webkit-user-drag:auto">' + roomID + '</strong></div><br><button onclick="sendFirstReload();">' + langjson.reload + '</button>&nbsp;<button onclick="sendDeleteForce();">' + langjson.cancel + '</button></p>';
+	appBox.innerHTML = '<p><strong>' + langjson.waitjoin1 + '</strong><br><br><div style="font-size:150%">' + langjson.waitjoin2 + '</div><div style="font-size:150%"><strong style="-webkit-user-select:auto;user-select:auto;-webkit-touch-callout:auto;-webkit-user-drag:auto">' + roomID + '</strong></div><br><button onclick="sendDeleteForce();">' + langjson.cancel + '</button>&nbsp;<button onclick="sendFirstReload();">' + langjson.reload + '</button></p>';
 	sendFirstLoad();
 })
 
@@ -440,7 +440,7 @@ socket.on('first-load', strMessage => {
 })
 
 socket.on('load', strMessage => {
-	if (getMess != strMessage) {
+	if (getMess != strMessage && join == true) {
 		getMess = strMessage;
 		if (getMess.length != 0) {
 			getMessDec = cryptico.decrypt(getMess, my_decrypt).plaintext;
@@ -461,8 +461,10 @@ socket.on('cryptload', strMessage => {
 
 //success
 socket.on('send-success', strMessage => {
-	document.getElementById('status').innerHTML = '' + langjson.sent + '';
-	window.setTimeout("document.getElementById('status').innerHTML = '';", 5000);
+if (serverErrorFlag == false && langErrorFlag == false && latestError == "" && nowErrorView == "") {
+	document.getElementById('msg').innerHTML = '<div class="goodmsg" id="msgbox">' + langjson.sent + '</div>';
+	window.setTimeout("if (nowErrorView == '') { msgMove(); }", 3000);
+}
 })
 
 socket.on('delete-success', strMessage => {
@@ -492,11 +494,17 @@ socket.on('joined', strMessage => {
 })
 
 socket.on('load-error', strMessage => {
-	document.getElementById('status').innerHTML = '' + langjson.reloadfail + '';
+if (serverErrorFlag == false && langErrorFlag == false && latestError == "" && nowErrorView == "") {
+	document.getElementById('msg').innerHTML = '<div class="msg" id="msgbox">' + langjson.reloadfail + '</div>';
+	window.setTimeout("if (nowErrorView == '') { msgMove(); }", 3000);
+}
 })
 
 socket.on('send-error', strMessage => {
-	document.getElementById('status').innerHTML = '' + langjson.sendfail + '';
+if (serverErrorFlag == false && langErrorFlag == false && latestError == "" && nowErrorView == "") {
+	document.getElementById('msg').innerHTML = '<div class="msg" id="msgbox">' + langjson.sendfail + '</div>';
+	window.setTimeout("if (nowErrorView == '') { msgMove(); }", 5000);
+}
 })
 
 socket.on('delete-error', strMessage => {
@@ -550,6 +558,10 @@ function eraser() {
 	exporting = false;
 	exportPass = "";
 	exported = "";
+	if (nowErrorView == "deletecheck") {
+		nowErrorView = "";
+		msgMove();		
+	}
 }
 
 function Button() {
@@ -573,4 +585,4 @@ document.body.addEventListener('keydown', event => {
 
 window.onbeforeunload = function(e) {if (join == true) {return "";}}
 window.document.onkeydown = function(evt){
-if (evt.which == 123 && ((event.ctrlKey || event.metaKey) && 76)){ evt.which = null;return false;}}
+if (evt.which == 123 || ((event.ctrlKey || event.metaKey) && 76)){ evt.which = null;return false;}}

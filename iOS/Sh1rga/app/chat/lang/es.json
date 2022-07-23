@@ -1,0 +1,65 @@
+{
+	"startroom" : "Iniciar una sala",
+	"start" : "Inicio de curso",
+	"joinroom" : "Únete a la sala",
+	"entertheroomid" : "Introduzca el ID de la habitación",
+	"join" : "Participación",
+	
+	"nowloading" : "Cargando...",
+	"loadingview1" : "Esto puede llevar algún tiempo.",
+	"loadingview2" : "Por favor, no opere y espere.",
+	"loadingviewsuc" : "¡Carga completa!",
+	
+	"roomid" : "ID de la habitación",
+	"receivemess" : "Mensaje recibido.",
+	"entermess" : "Escribe tu mensaje.",
+	
+	"waitjoin1" : "A la espera de los participantes...",
+	"waitjoin2" : "La identificación de la habitación es",
+	
+	"cancel" : "Cancelar",
+	"retry" : "Reintentar",
+	"send" : "Enviar",
+	"sending" : "Enviando...",
+	"sent" : "¡Enviado!",
+	"sentfail" : "Fallo de envío.",
+	"delete" : "Borrar",
+	"deletecheck" : "¿Seguro que quiere eliminar la habitación? (Pulse de nuevo para eliminar)",
+	"deleting" : "Borrar...",
+	"deleted" : "¡Suprimido!",
+	"deletefail" : "Fallo en la eliminación.",
+	"reload" : "Recarga",
+	"reloadfail" : "Fallo de carga.",
+	"ok" : "OK",
+	
+	"starterror1" : "La creación de la sala ha fallado.",
+	"starterror2" : "Inténtalo de nuevo.",
+	
+	"joinerror" : "No ha participado por cualquier motivo.",
+	"joinrnf" : "No pudo asistir porque no se encontró una sala.",
+	"joined1" : "No ha participado.",
+	"joined2" : "Ya hay participantes.",
+	
+	"roomnotfound1" : "Habitación no encontrada.",
+	"roomnotfound2" : "Puede que se haya borrado o que el tiempo haya expirado.",
+	
+	"serverdown1" : "El servidor está actualmente fuera de servicio.",
+	"serverdown2" : "Compruebe el estado en Twitter y en otros lugares.",
+	
+	"roomflagged1" : "La sala ha sido marcada.",
+	"roomflagged2" : "La conversación no puede continuar.",
+	
+	"oldver1" : "La versión está desfasada.",
+	"oldver2" : "Recarga la página.",
+	
+	"notconnect_re" : "Al volver a conectar...",
+	"notconnect_1" : "La comunicación con el servidor se ha desconectado.",
+	"notconnect10_1" : "No ha podido conectarse al servidor durante algún tiempo.",
+	"notconnect30_1" : "La conexión con el servidor ha fallado.",
+	"notconnect30_2" : "Por favor, inténtelo de nuevo después de un tiempo.",
+	
+	"setting" : "Configuración de",
+	"tos" : "Al utilizar Sh1rga, aceptas las condiciones de servicio de Sh1rga.",
+	
+	"" : ""
+}

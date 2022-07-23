@@ -1,0 +1,65 @@
+{
+	"startroom" : "Comece uma sala",
+	"start" : "Início",
+	"joinroom" : "Junte-se à sala",
+	"entertheroomid" : "Introduza o ID do quarto",
+	"join" : "Participação",
+	
+	"nowloading" : "Carregamento...",
+	"loadingview1" : "Isto pode demorar algum tempo.",
+	"loadingview2" : "Por favor, não operar e esperar.",
+	"loadingviewsuc" : "Carregamento completo!",
+	
+	"roomid" : "ID do quarto",
+	"receivemess" : "Mensagem recebida",
+	"entermess" : "Escreva a sua mensagem",
+	
+	"waitjoin1" : "À espera de participantes ...",
+	"waitjoin2" : "O ID do quarto é",
+	
+	"cancel" : "Cancelar",
+	"retry" : "Tentativa",
+	"send" : "Enviar",
+	"sending" : "Envio...",
+	"sent" : "Enviado!",
+	"sentfail" : "Envio de falhas.",
+	"delete" : "Eliminar",
+	"deletecheck" : "Tem a certeza de querer apagar a sala? (Pressione novamente para apagar)",
+	"deleting" : "Eliminação...",
+	"deleted" : "Apagado!",
+	"deletefail" : "Falha em apagar.",
+	"reload" : "Recarregar",
+	"reloadfail" : "Falha no carregamento.",
+	"ok" : "OK",
+	
+	"starterror1" : "A criação de salas falhou.",
+	"starterror2" : "Tente novamente.",
+	
+	"joinerror" : "Falha em participar por qualquer razão.",
+	"joinrnf" : "Não compareceu porque não foi possível encontrar um quarto.",
+	"joined1" : "Falha na participação.",
+	"joined2" : "Já há participantes.",
+	
+	"roomnotfound1" : "Quarto não encontrado.",
+	"roomnotfound2" : "Pode ter sido apagado ou o tempo pode ter expirado.",
+	
+	"serverdown1" : "O servidor está actualmente fora de serviço.",
+	"serverdown2" : "Verifique o estado no Twitter e noutros locais.",
+	
+	"roomflagged1" : "O quarto foi assinalado.",
+	"roomflagged2" : "A conversação não pode continuar.",
+	
+	"oldver1" : "A versão está desactualizada.",
+	"oldver2" : "Recarregar a página.",
+	
+	"notconnect_re" : "Reconectar...",
+	"notconnect_1" : "A comunicação com o servidor foi desconectada.",
+	"notconnect10_1" : "Há já algum tempo que não consegue ligar-se ao servidor.",
+	"notconnect30_1" : "A ligação ao servidor falhou.",
+	"notconnect30_2" : "Por favor, tente novamente após algum tempo.",
+	
+	"setting" : "Configuração",
+	"tos" : "Ao utilizar o Sh1rga, concorda com os Termos de Serviço do Sh1rga.",
+	
+	"" : ""
+}

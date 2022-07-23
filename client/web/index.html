@@ -28,14 +28,24 @@
 </head><body>
 <bdo dir="ltr" id="bdo">
 <header>
-<div class="ls"><img src="logo.png" aria-label="Shirga" alt="Sh1rga"></div>
+<div class="ls"><img src="logo.png" alt="Sh1rga Chat" aria-hidden="true"></div>
 <div class="ls" id="msg"></div>
 </header>
-<center>
+<center style="height:100vh">
 <div class="box" id="box">
 <div id="status"></div>
 </div>
-<div class="loadCurtain" id="loadCurtain"><center><img src="sh1rga.svg" aria-label="Now Loading" alt="Sh1rga"></center></div>
+<div class="loadCurtain" id="loadCurtain"><center>
+<script>document.write('<img src="sh1rga.svg" aria-label="Now Loading" alt="Sh1rga">')</script>
+<noscript>
+<div class="setbox" style="padding-bottom:32px;margin:16px">
+<img src="logo.png" aria-label="Shirga Chat" alt="Sh1rga Chat"><br>
+<strong style="font-size:150%">JavaScript is not available.</strong><br><br>
+JavaScript and WebSockets are required to use Sh1rga Chat.<br>
+Please enable them or switch to a supported browser.<br><br>
+<i style="color:#aaa">(Safari, Firefox and Tor Browser are recommended for Sh1rga Chat)</i>
+</div></noscript>
+</center></div>
 </bdo>
 </center></body>
 <script>

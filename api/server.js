@@ -34,16 +34,10 @@ var enc_str = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var enc_strLen = enc_str.length;
 var enc_result = "";
 
-var stopServer = false;
-var stopServerMessage = "";
-
 io.on(
     'connection',
     ( socket ) =>
     {
-        if (stopServer == true) {
-            socket.emit( 'serverIsDown', stopServerMessage)
-        }else{
 
         socket.on(
             'start', //Start
@@ -425,7 +419,6 @@ io.on(
                     socket.emit( 'cryptload', server_encrypt )
             } );
             
-        }
     } );
     
 //Delete files in 12-hour cycles
@@ -530,11 +523,5 @@ server.listen(PORT,() => {
     newCrypt();
     console.log( 'Server on port %d', PORT );
     console.log( ' Version: ' + version );
-    try {
-        var flag_enablejson = JSON.parse(fs.readFileSync('./database/server.json', 'utf8'));
-        flag_enable = flag_enablejson.flag_enable;
-    }catch{
-        flag_enable = false;
-    }
     console.log( ' Flag: ' + flag_enable );
 } );

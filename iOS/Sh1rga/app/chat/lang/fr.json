@@ -1,0 +1,65 @@
+{
+	"startroom" : "Commencer une pièce",
+	"start" : "Commencement",
+	"joinroom" : "Rejoindre la salle",
+	"entertheroomid" : "Entrez l'ID de la chambre",
+	"join" : "Participation",
+	
+	"nowloading" : "Chargement...",
+	"loadingview1" : "Cela peut prendre un certain temps.",
+	"loadingview2" : "Veuillez ne pas opérer et attendre.",
+	"loadingviewsuc" : "Chargement terminé !",
+	
+	"roomid" : "ID de la pièce",
+	"receivemess" : "Message reçu",
+	"entermess" : "Tapez votre message.",
+	
+	"waitjoin1" : "En attendant les participants ...",
+	"waitjoin2" : "Le numéro de chambre est",
+	
+	"cancel" : "Annuler",
+	"retry" : "Réessayer",
+	"send" : "Envoyer",
+	"sending" : "Envoi...",
+	"sent" : "Envoyé !",
+	"sentfail" : "Échec de l'envoi.",
+	"delete" : "Supprimer",
+	"deletecheck" : "Êtes-vous sûr de vouloir supprimer la pièce ? (Appuyez à nouveau pour supprimer)",
+	"deleting" : "Suppression...",
+	"deleted" : "Supprimé !",
+	"deletefail" : "Échec de la suppression.",
+	"reload" : "Rechargez",
+	"reloadfail" : "Échec du chargement.",
+	"ok" : "OK",
+	
+	"starterror1" : "La création de la salle a échoué.",
+	"starterror2" : "Essayez encore.",
+	
+	"joinerror" : "N'a pas participé pour une raison quelconque.",
+	"joinrnf" : "Ne s'est pas présenté car aucune salle n'a pu être trouvée.",
+	"joined1" : "N'a pas participé.",
+	"joined2" : "Il y a déjà des participants.",
+	
+	"roomnotfound1" : "Chambre non trouvée.",
+	"roomnotfound2" : "Peut avoir été supprimé ou le temps peut avoir expiré.",
+	
+	"serverdown1" : "Le serveur est actuellement hors service.",
+	"serverdown2" : "Vérifiez le statut sur Twitter et ailleurs.",
+	
+	"roomflagged1" : "La pièce a été signalée.",
+	"roomflagged2" : "La conversation ne peut pas continuer.",
+	
+	"oldver1" : "La version est périmée.",
+	"oldver2" : "Rechargez la page.",
+	
+	"notconnect_re" : "Reconnexion...",
+	"notconnect_1" : "La communication avec le serveur a été déconnectée.",
+	"notconnect10_1" : "Vous n'avez pas pu vous connecter au serveur depuis un certain temps.",
+	"notconnect30_1" : "La connexion au serveur a échoué.",
+	"notconnect30_2" : "Veuillez réessayer après un certain temps.",
+	
+	"setting" : "Réglage de",
+	"tos" : "En utilisant Sh1rga, vous acceptez les conditions de service de Sh1rga.",
+	
+	"" : ""
+}

@@ -17,12 +17,6 @@ class ViewController: UIViewController , WKNavigationDelegate , WKUIDelegate , U
     var webView: WKWebView!
     var firstTime = true
     var internetConnection = false
-    var autoSleepDisable = false
-    var enableBackground = false
-    var muteWord:String? = nil
-    var enableMuteWord = false
-    var allowMuteWord = false
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,20 +28,26 @@ class ViewController: UIViewController , WKNavigationDelegate , WKUIDelegate , U
         webView!.backgroundColor = UIColor(red: 17/255, green: 17/255, blue: 17/255, alpha: 1.0)
         webView.uiDelegate = self
         view = webView
-        autoSleepDisable = UserDefaults.standard.bool(forKey: "chat.autoSleepDisable")
+        appDelegate.autoSleepDisable = UserDefaults.standard.bool(forKey: "chat.autoSleepDisable")
         #if !RELEASEBYPASS
         //if ALTRELEASE
-        enableBackground = UserDefaults.standard.bool(forKey: "chat.enableBackground")
+        appDelegate.enableBackground = UserDefaults.standard.bool(forKey: "chat.enableBackground")
         #else
         //#elseif RELEASEBYPASS
-        enableMuteWord = UserDefaults.standard.bool(forKey: "chat.enableMuteWord")
-        muteWord = UserDefaults.standard.string(forKey: "chat.muteWord")
+        appDelegate.enableMuteWord = UserDefaults.standard.bool(forKey: "chat.enableMuteWord")
+        appDelegate.muteWord = UserDefaults.standard.string(forKey: "chat.muteWord")
         #endif
         if let html = Bundle.main.path(forResource: "app/loading", ofType: "html") {
               let url = URL(fileURLWithPath: html)
               let request = URLRequest(url: url)
               webView.load(request)
         }
+        NotificationCenter.default.addObserver(self, selector: #selector(boldTextStatusDidChangeNotification(notification:)), name: UIAccessibility.boldTextStatusDidChangeNotification, object: nil)
+        if #available(iOS 14.0, *) {
+            NotificationCenter.default.addObserver(self, selector: #selector(buttonShapesEnabledStatusDidChangeNotification(notification:)), name: UIAccessibility.buttonShapesEnabledStatusDidChangeNotification, object: nil)
+        }
+        NotificationCenter.default.addObserver(self, selector: #selector(reduceTransparencyStatusDidChangeNotification(notification:)), name: UIAccessibility.reduceTransparencyStatusDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reduceMotionStatusDidChangeNotification(notification:)), name: UIAccessibility.reduceMotionStatusDidChangeNotification, object: nil)
     }
     
     func loadSh1rga() {
@@ -57,7 +57,6 @@ class ViewController: UIViewController , WKNavigationDelegate , WKUIDelegate , U
             appDelegate.lang = "ar"
         }
         if Locale.current.languageCode == "zh" {
-            print(Locale.current.identifier)
             if Locale.current.identifier == "zh-TW" || Locale.current.identifier.prefix(7) == "zh-Hant"{
                 appDelegate.lang = "tw"
             }else{
@@ -90,14 +89,14 @@ class ViewController: UIViewController , WKNavigationDelegate , WKUIDelegate , U
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [self] in
             if (internetConnection == true) {
-                if let html = Bundle.main.path(forResource: "app/index", ofType: "html") {
+                if let html = Bundle.main.path(forResource: "app/chat/index", ofType: "html") {
                     let url = URL(fileURLWithPath: html)
                     let request = URLRequest(url: url)
                     webView.load(request)
                 }
                 
             }else{
-                if let html = Bundle.main.path(forResource: "app/error", ofType: "html") {
+                if let html = Bundle.main.path(forResource: "app/chat/error", ofType: "html") {
                     let url = URL(fileURLWithPath: html)
                     let request = URLRequest(url: url)
                     webView.load(request)
@@ -123,7 +122,52 @@ class ViewController: UIViewController , WKNavigationDelegate , WKUIDelegate , U
         if firstTime == true {
             loadSh1rga()
         }
+        if UIAccessibility.isBoldTextEnabled {
+            webView.evaluateJavaScript("window.setTimeout(\"isBoldTextEnabled(true);\", 200);")
         }
+        if #available(iOS 14.0, *) {
+            if UIAccessibility.buttonShapesEnabled {
+                webView.evaluateJavaScript("window.setTimeout(\"buttonShapesEnabled(true);\", 200);")
+            }
+        }
+        if UIAccessibility.isReduceTransparencyEnabled {
+            webView.evaluateJavaScript("window.setTimeout(\"isReduceTransparencyEnabled(true);\", 200);")
+        }
+        if UIAccessibility.isReduceMotionEnabled {
+            webView.evaluateJavaScript("window.setTimeout(\"isReduceMotionEnabled(true);\", 200);")
+        }
+    }
+    
+    @objc private func boldTextStatusDidChangeNotification(notification: Notification) {
+        if UIAccessibility.isBoldTextEnabled {
+            webView.evaluateJavaScript("isBoldTextEnabled(true);")
+        }else{
+            webView.evaluateJavaScript("isBoldTextEnabled(false);")
+        }
+    }
+    @objc private func buttonShapesEnabledStatusDidChangeNotification(notification: Notification) {
+        if #available(iOS 14.0, *) {
+            if UIAccessibility.buttonShapesEnabled {
+                webView.evaluateJavaScript("buttonShapesEnabled(true);")
+            }else{
+                webView.evaluateJavaScript("buttonShapesEnabled(false);")
+            }
+        }
+    }
+    @objc private func reduceTransparencyStatusDidChangeNotification(notification: Notification) {
+        if UIAccessibility.isReduceTransparencyEnabled {
+            webView.evaluateJavaScript("isReduceTransparencyEnabled(true);")
+        }else{
+            webView.evaluateJavaScript("isReduceTransparencyEnabled(false);")
+        }
+    }
+    @objc private func reduceMotionStatusDidChangeNotification(notification: Notification) {
+        if UIAccessibility.isReduceMotionEnabled {
+            webView.evaluateJavaScript("isReduceMotionEnabled(true);")
+        }else{
+            webView.evaluateJavaScript("isReduceMotionEnabled(false);")
+        }
+    }
 
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         
@@ -140,7 +184,6 @@ class ViewController: UIViewController , WKNavigationDelegate , WKUIDelegate , U
                         let jsonData = try JSONDecoder().decode(Record.self, from: data)
                         DispatchQueue.main.async {
                             let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
-                            
                             if jsonData.ver != version {
                                 self.verOldAlert()
                             }
@@ -168,9 +211,9 @@ class ViewController: UIViewController , WKNavigationDelegate , WKUIDelegate , U
                     do {
                         let jsonData = try JSONDecoder().decode(Record.self, from: data)
                         DispatchQueue.main.async {
-                            self.allowMuteWord = jsonData.allowMuteWord
+                            self.appDelegate.allowMuteWord = jsonData.allowMuteWord
                             if jsonData.allowMuteWord == false {
-                                self.enableMuteWord = false
+                                self.appDelegate.enableMuteWord = false
                             }
                         }
                     } catch _ {
@@ -188,8 +231,8 @@ class ViewController: UIViewController , WKNavigationDelegate , WKUIDelegate , U
             if navigationAction.request.url!.absoluteString == "sh1rga://appSettingLoad" {
                 
                 #if RELEASEBYPASS
-                if (enableMuteWord == true && enableMuteWord == true) {
-                    webView.evaluateJavaScript("muteWord = \"" + muteWord! + "\";")
+                if (appDelegate.enableMuteWord == true && appDelegate.enableMuteWord == true) {
+                    webView.evaluateJavaScript("muteWord = \"" + appDelegate.muteWord! + "\";")
                     webView.evaluateJavaScript("enableMuteWord = true;")
                 }else{
                     webView.evaluateJavaScript("enableMuteWord = false;")
@@ -202,6 +245,11 @@ class ViewController: UIViewController , WKNavigationDelegate , WKUIDelegate , U
                 loadSh1rga()
                 
             }else if navigationAction.request.url!.absoluteString == "sh1rga://notifi/getNewMessage" {
+                if (appDelegate.selectedTabBar != "Chat") {
+                    let tabBarItem = tabBarController?.viewControllers?[0].tabBarItem
+                    tabBarItem?.badgeValue = "!"
+                    tabBarItem?.badgeColor = UIColor.red
+                }
                 
                 let content: UNMutableNotificationContent = UNMutableNotificationContent()
                 content.title = "Sh1rga Chat"
@@ -297,7 +345,7 @@ class ViewController: UIViewController , WKNavigationDelegate , WKUIDelegate , U
                 
             }else if navigationAction.request.url!.absoluteString == "sh1rga://flag/join/true" {
                 appDelegate.joinFlag = true
-                if autoSleepDisable == true {
+                if appDelegate.autoSleepDisable == true {
                     UIApplication.shared.isIdleTimerDisabled = true
                 }else{
                     UIApplication.shared.isIdleTimerDisabled = false
@@ -307,163 +355,7 @@ class ViewController: UIViewController , WKNavigationDelegate , WKUIDelegate , U
                 appDelegate.joinFlag = false
                 UIApplication.shared.isIdleTimerDisabled = false
                     
-            }else if navigationAction.request.url!.absoluteString == "sh1rga://settingViewLoad" {
-                
-                if autoSleepDisable == true {
-                    webView.evaluateJavaScript("document.getElementById('setting-autoSleepDisable').innerHTML = '<a href=\"sh1rga://setting/autoSleepDisable/false\">ON</a>'")
-                }else{
-                    webView.evaluateJavaScript("document.getElementById('setting-autoSleepDisable').innerHTML = '<a href=\"sh1rga://setting/autoSleepDisable/true\" style=\"color:#ddd\">OFF</a>'")
-                }
-                
-                #if !RELEASEBYPASS
-                //#if ALTRELEASE
-                webView.evaluateJavaScript("document.getElementById('setting-altchange').innerHTML = '<div class=\"setbox\"><h3 style=\"margin:5px\">' + settingLangJson.background + '</h3><div style=\"padding:5px;color:#ccc\">' + settingLangJson.background_1 + '<br>' + settingLangJson.background_2 + '<br></div><div id=\"setting-enableBackground\"><a>&nbsp; &nbsp; &nbsp;</a></div></div><br>'")
-                if enableBackground == true {
-                    webView.evaluateJavaScript("document.getElementById('setting-enableBackground').innerHTML = '<a href=\"sh1rga://setting/enableBackground/false\">ON</a>'")
-                }else{
-                    webView.evaluateJavaScript("document.getElementById('setting-enableBackground').innerHTML = '<a href=\"sh1rga://setting/enableBackground/true\" style=\"color:#ddd\">OFF</a>'")
-                }
-                #else
-                //#elseif RELEASEBYPASS
-                if allowMuteWord == true {
-                    webView.evaluateJavaScript("document.getElementById('setting-altchange').innerHTML = '<div class=\"setbox\"><h3 style=\"margin:5px\">' + settingLangJson.muteword + '</h3><div style=\"padding:5px;color:#ccc\">' + settingLangJson.muteword_1 + '<br></div><div style=\"display:inline\" id=\"setting-enableMuteWord\"><a>&nbsp; &nbsp; &nbsp;</a></div>&nbsp; &nbsp;<a href=\"sh1rga://setting/muteWord\">' + langjson.setting + '</a></div><br>'")
-                    if enableMuteWord == true {
-                        webView.evaluateJavaScript("document.getElementById('setting-enableMuteWord').innerHTML = '<a href=\"sh1rga://setting/enableMuteWord/false\">ON</a>'")
-                    }else{
-                        webView.evaluateJavaScript("document.getElementById('setting-enableMuteWord').innerHTML = '<a href=\"sh1rga://setting/enableMuteWord/true\" style=\"color:#ddd\">OFF</a>'")
-                    }
-                }
-                #endif
-                
-            }else if navigationAction.request.url!.absoluteString == "sh1rga://setting/icon/0" {
-                UIApplication.shared.setAlternateIconName(nil, completionHandler: { error in print(error as Any) })
-                    
-            }else if navigationAction.request.url!.absoluteString == "sh1rga://setting/icon/1" {
-                UIApplication.shared.setAlternateIconName("App", completionHandler: { error in print(error as Any) })
-                    
-            }else if navigationAction.request.url!.absoluteString == "sh1rga://setting/icon/2" {
-                UIApplication.shared.setAlternateIconName("Black", completionHandler: { error in print(error as Any) })
-                    
-            }else if navigationAction.request.url!.absoluteString == "sh1rga://setting/autoSleepDisable/true" {
-                autoSleepDisable = true
-                UserDefaults.standard.set(true, forKey: "chat.autoSleepDisable")
-                webView.evaluateJavaScript("document.getElementById('setting-autoSleepDisable').innerHTML = '<a href=\"sh1rga://setting/autoSleepDisable/false\">ON</a>'")
-                
-            }else if navigationAction.request.url!.absoluteString == "sh1rga://setting/autoSleepDisable/false" {
-                autoSleepDisable = false
-                UserDefaults.standard.set(false, forKey: "chat.autoSleepDisable")
-                webView.evaluateJavaScript("document.getElementById('setting-autoSleepDisable').innerHTML = '<a href=\"sh1rga://setting/autoSleepDisable/true\" style=\"color:#ddd\">OFF</a>'")
-
-                
-            }else if navigationAction.request.url!.absoluteString == "sh1rga://setting/notifi" {
-                UNUserNotificationCenter.current().getNotificationSettings { settings in
-                        switch settings.authorizationStatus {
-                        case .notDetermined:
-                            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { (granted, error) in
-                            }; break
-                            
-                        case .denied:
-                            if let url = URL(string: UIApplication.openSettingsURLString), UIApplication.shared.canOpenURL(url) {
-                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                            }; break
-                            
-                        case .authorized:
-                            if let url = URL(string: UIApplication.openSettingsURLString), UIApplication.shared.canOpenURL(url) {
-                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                            }; break
-                            
-                        case .provisional:
-                            if let url = URL(string: UIApplication.openSettingsURLString), UIApplication.shared.canOpenURL(url) {
-                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                            }; break
-                            
-                        case .ephemeral:
-                            if let url = URL(string: UIApplication.openSettingsURLString), UIApplication.shared.canOpenURL(url) {
-                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                            }; break
-                            
-                        @unknown default:
-                            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { (granted, error) in
-                            }
-                            if let url = URL(string: UIApplication.openSettingsURLString), UIApplication.shared.canOpenURL(url) {
-                                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                                }; break
-                        }
-                }
-                
             }
-            
-            #if !RELEASEBYPASS
-            //#if ALTRELEASE
-            if navigationAction.request.url!.absoluteString == "sh1rga://setting/enableBackground/true" {
-                enableBackground = true
-                UserDefaults.standard.set(true, forKey: "chat.enableBackground")
-                webView.evaluateJavaScript("document.getElementById('setting-enableBackground').innerHTML = '<a href=\"sh1rga://setting/enableBackground/false\">ON</a>'")
-
-            }else if navigationAction.request.url!.absoluteString == "sh1rga://setting/enableBackground/false" {
-                enableBackground = false
-                UserDefaults.standard.set(false, forKey: "chat.enableBackground")
-                webView.evaluateJavaScript("document.getElementById('setting-enableBackground').innerHTML = '<a href=\"sh1rga://setting/enableBackground/true\" style=\"color:#ddd\">OFF</a>'")
-            }
-            #else
-            //#elseif RELEASEBYPASS
-            if allowMuteWord == true {
-                if navigationAction.request.url!.absoluteString == "sh1rga://setting/enableMuteWord/true" {
-                    enableMuteWord = true
-                    UserDefaults.standard.set(true, forKey: "chat.enableMuteWord")
-                    webView.evaluateJavaScript("document.getElementById('setting-enableMuteWord').innerHTML = '<a href=\"sh1rga://setting/enableMuteWord/false\">ON</a>'")
-                    webView.evaluateJavaScript("enableMuteWord = true;")
-                }else if navigationAction.request.url!.absoluteString == "sh1rga://setting/enableMuteWord/false" {
-                    enableMuteWord = false
-                    UserDefaults.standard.set(false, forKey: "chat.enableMuteWord")
-                    webView.evaluateJavaScript("document.getElementById('setting-enableMuteWord').innerHTML = '<a href=\"sh1rga://setting/enableMuteWord/true\" style=\"color:#ddd\">OFF</a>'")
-                    webView.evaluateJavaScript("enableMuteWord = false;")
-                }else if navigationAction.request.url!.absoluteString == "sh1rga://setting/muteWord" {
-                    
-                    struct Record:Codable {
-                        let muteword: String
-                        let muteword_1: String
-                    }
-                    var mutewordAlertText = "Mute Word"
-                    var mutewordAlertMes = "Mutes the specified words."
-                    let url = URL(string: "https://chat.sh1r.ga/ios/lang/" + appDelegate.lang + ".json")!
-                    let request = URLRequest(url: url)
-                    let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-                        guard let data = data else { return }
-                        do {
-                            let jsonData = try JSONDecoder().decode(Record.self, from: data)
-                            DispatchQueue.main.async {
-                                mutewordAlertText = jsonData.muteword
-                                mutewordAlertMes = jsonData.muteword_1
-                            }
-                        } catch _ {
-                        }
-                    }
-                    task.resume()
-                    
-                    let alert = UIAlertController(title: mutewordAlertText, message: mutewordAlertMes, preferredStyle: .alert)
-                    alert.addTextField( configurationHandler: { (Word: UITextField!) -> Void in
-                        Word.text = self.muteWord
-                    })
-                    let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                        let textFields:Array<UITextField>? =  alert.textFields as Array<UITextField>?
-                        for textField:UITextField in textFields! {
-                            self.muteWord = textField.text
-                            UserDefaults.standard.set(self.muteWord, forKey: "chat.muteWord")
-                            webView.evaluateJavaScript("muteWord = \"" + self.muteWord! + "\";")
-                        }
-                        self.dismiss(animated: true, completion: nil)
-                    }
-                    let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (acrion) in
-                        self.dismiss(animated: true, completion: nil)
-                    }
-                    alert.addAction(cancel)
-                    alert.addAction(ok)
-                    self.present(alert, animated: true, completion: nil)
-                    
-                }
-            }
-            #endif
             
         } else {
             if "file://" == navigationAction.request.url!.absoluteString.prefix(7) {

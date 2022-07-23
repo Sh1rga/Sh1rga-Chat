@@ -7,6 +7,7 @@
 
 import UIKit
 import AVFoundation
+import WebKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate, AVAudioPlayerDelegate {
 
@@ -14,14 +15,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, AVAudioPlayerDelegate {
     var backgroundTaskID = UIBackgroundTaskIdentifier(rawValue: 6336)
     var window: UIWindow?
     let view = UIView()
-    var enableBackground = false
     var playing = false
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard (scene is UIWindowScene) else { return }
+        if Locale.current.languageCode == "ar" {
+            UIView.appearance().semanticContentAttribute = .forceRightToLeft
+            WKWebView.appearance().semanticContentAttribute = .forceRightToLeft
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -46,14 +50,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, AVAudioPlayerDelegate {
         // Use this method to undo the changes made on entering the background.
         
         #if !RELEASEBYPASS
-        //#if ALTRELEASE
-        enableBackground = UserDefaults.standard.bool(forKey: "chat.enableBackground")
-        if enableBackground == true && playing == true {
+//        #if ALTRELEASE
+        appDelegate.enableBackground = UserDefaults.standard.bool(forKey: "chat.enableBackground")
+        if appDelegate.enableBackground == true && playing == true {
             appDelegate.audioPlayer.stop()
             playing = false
         }
         #endif
-        
         self.view.removeFromSuperview()
         UIApplication.shared.endBackgroundTask(self.backgroundTaskID)
     }
@@ -71,8 +74,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, AVAudioPlayerDelegate {
         
         #if !RELEASEBYPASS
         //#if ALTRELEASE
-        enableBackground = UserDefaults.standard.bool(forKey: "chat.enableBackground")
-        if enableBackground == true && appDelegate.joinFlag == true {
+        appDelegate.enableBackground = UserDefaults.standard.bool(forKey: "chat.enableBackground")
+        if appDelegate.enableBackground == true && appDelegate.joinFlag == true {
         do {
             guard let path = Bundle.main.path(forResource: "bg", ofType: "mp3") else {
                 return

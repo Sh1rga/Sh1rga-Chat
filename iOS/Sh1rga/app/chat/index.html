@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html id="html"><head>
+<meta charset="utf-8">
+<link rel="preconnect dns-prefetch" href="//chat.api-sh1r.ga">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Sh1rga Chat</title>
+<link rel="stylesheet" type="text/css" href="css.css">
+</head><body>
+<bdo dir="ltr" id="bdo">
+<header>
+<div class="ls"><img src="logo.png" alt="Sh1rga Chat" aria-hidden="true"></div>
+<div class="ls" id="msg"></div>
+</header>
+<center>
+<div class="box" id="box">
+</div>
+<div style="width:100%;border-bottom:solid 3px #444;border-width:1.5px;top:calc(100% - 1.5px);position:fixed"></div>
+<div class="loadCurtain" id="loadCurtain"><center>
+<script>document.write('<img src="sh1rga.svg" aria-label="Now Loading" alt="Sh1rga">')</script>
+<noscript>
+<div class="setbox" style="padding-bottom:32px;margin:16px">
+<img src="logo.png" aria-label="Shirga Chat" alt="Sh1rga Chat"><br>
+<strong style="font-size:150%">JavaScript is not available.</strong><br><br>
+JavaScript and WebSockets are required to use Sh1rga Chat.<br>
+Please enable them or switch to a supported browser.<br><br>
+<i style="color:#aaa">(Safari, Firefox and Tor Browser are recommended for Sh1rga Chat)</i>
+</div></noscript>
+</center></div>
+</bdo>
+</center></body>
+<script>
+var address_api = "https://chat.api-sh1r.ga";
+var address_client = "https://chat.sh1r.ga";
+var address_web = "https://sh1r.ga";
+</script>
+<script src="socket.io/socket.io.js" defer></script>
+<script src="../jquery.js" defer></script>
+<script src="crypt.js" defer></script>
+<script src="string.js" defer></script>
+<script src="app.js" defer></script>
+<script src="../accessibility.js" defer></script>
+<script defer>
+function loopApp(){
+	if (join == true) {
+		location.href = "sh1rga://flag/join/true";
+	}else{
+		location.href = "sh1rga://flag/join/false";
+	}
+	if (isReduceTransparency == true) {
+		$('.msg').css('background-color', 'rgb(68,17,34)');
+		$('.goodmsg').css('background-color', 'rgb(17,68,34)');
+	}else{
+		$('.msg').css('background-color', '');
+		$('.goodmsg').css('background-color', '');
+	}
+	window.setTimeout("loopApp();", 100);
+}
+</script>
+</html>

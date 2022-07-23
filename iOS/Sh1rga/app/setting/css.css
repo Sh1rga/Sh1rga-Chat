@@ -1,0 +1,121 @@
+*{
+font-family:"Helvetica Neue",Arial,"Hiragino Kaku Gothic ProN","Hiragino Sans",Meiryo,sans-serif;
+-webkit-user-select:none;
+-webkit-touch-callout:none;
+-webkit-user-drag:none;
+user-select:none;
+cursor:default;
+}
+body{
+overflow-wrap:break-word;
+background-color:#000;
+color:#fff;
+width:100%;
+margin:0px auto;
+position:relative;
+overflow:hidden;
+}
+a{
+text-decoration:none;
+font-size:16px;
+display:inline-block;
+min-height:32px;
+color:#00b0ff;
+background-color:#151515;
+padding:0 16px;
+margin:5px 0;
+border-radius:32px;
+text-align:center;
+font-weight:500;
+line-height:32px;
+border:solid;
+border-color:#345;
+border-width:2px;
+cursor:pointer;
+}
+.nobox{
+font-weight:normal;
+color:#fff;
+height:auto;
+background-color:rgba(0, 0, 0, 0);
+border:none;
+line-height:normal;
+}
+p{padding:5px 0px 5px}
+button{
+width:auto;
+font-size:16px;
+height:36px;
+color:#00b0ff;
+background-color:#151515;
+padding:0 16px;
+margin:5px 0;
+border-radius:32px;
+text-align:center;
+font-weight:500;
+border:solid;
+border-color:#345;
+border-width:2px;
+line-height:32px;
+cursor:pointer;
+}
+img{
+pointer-events:none;
+-webkit-touch-callout:none;
+-webkit-user-select:none;
+-webkit-user-drag:none;
+user-select:none;
+}
+:root{color-scheme:dark}
+header{
+width:100%;
+height:78.5px;
+display:table;
+position:fixed;
+top:0;
+background-color:#111;
+border-bottom:solid 3px #444;
+border-width:1.5px;
+}
+header .ls{
+display:table-cell;
+min-width:40px;
+}
+header img{
+display:inline-block;
+width:auto;
+height:70px;
+margin:2px 16px 0;
+}
+.box{
+overflow-y:auto;
+width:calc(1000px - 10px);
+height:calc(100% - 91.5px);
+background-color:#000;
+border-color:#134;
+padding:5px;
+position:fixed;
+left:calc(50% - 500px);
+top:80px;
+}
+.setbox{
+padding:10px;
+width:90%;
+border-radius:15px;
+border:solid 5px #345;
+background-color:#111;
+}
+@media only screen and (max-width:1000px){
+.box{
+width:calc(100% - 10px);
+left:0;
+}
+}
+@media only screen and (max-width:599px){
+header .ls{
+display:block;
+margin:auto;
+text-align:center;
+}
+}
+@media print{*{opacity:0%}}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Sh1rga Chat</title>
+<link rel="stylesheet" type="text/css" href="css.css">
+</head><body><bdo dir="ltr" id="bdo">
+<header>
+<div class="ls"><img src="logo.png" alt="Sh1rga Chat" aria-hidden="true"></div>
+</header>
+<center>
+<div class="box" id="box">
+<h1>Error</h1>
+<strong>Connection to server failed.</strong>
+<p><button onclick="location.href = 'sh1rga://reload'">Reload</button></p>
+</div>
+<div style="width:100%;border-bottom:solid 3px #444;border-width:1.5px;top:calc(100% - 1.5px);position:fixed"></div>
+</bdo></center></body>
+<script src="../accessibility.js" defer></script>
+<script defer>window.onload = function(){
+document.addEventListener('touchmove', (e) => { if (e.touches.length > 1) { e.preventDefault();}}, { passive: false });
+document.addEventListener("dblclick", function(e){ e.preventDefault();}, { passive: false });
+autoReload();
+}
+function autoReload() {
+location.href = 'sh1rga://reload';
+window.setTimeout("autoReload();", 1000);
+}
+</script>
+</html>

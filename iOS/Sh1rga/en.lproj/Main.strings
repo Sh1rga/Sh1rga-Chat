@@ -1,1 +1,6 @@
 
+/* Class = "UITabBarItem"; title = "Chat"; ObjectID = "GHn-Uu-zxb"; */
+"GHn-Uu-zxb.title" = "Chat";
+
+/* Class = "UITabBarItem"; title = "Setting"; ObjectID = "ah8-tC-vs8"; */
+"ah8-tC-vs8.title" = "Settings";
