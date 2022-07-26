@@ -212,10 +212,6 @@ top:calc(50% - 25vh);
 left:calc(50% - 25vh);;
 height:50vh;
 }
-.loadCurtain noscript img{
-position:unset;
-height:100px;
-}
 @media only screen and (max-width:1000px){
 .box{
 width:calc(100% - 10px);
